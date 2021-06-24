@@ -25,4 +25,21 @@ public class SaidController : MonoBehaviour
         if(isGameOn)
            transform.position = Vector3.MoveTowards(transform.position, roads[currentRoad].position + new Vector3(0,1,0), speedOftransition / 10);
     }
+
+    void OnMove(int direction)
+    {
+        if (currentRoad < 4 && currentRoad > 0)
+            currentRoad += direction;
+        else
+            Debug.Log("Error!");
+    }
+
+    public void OnLeftMove()
+    {
+        OnMove(-1);
+    }
+    public void OnRightMove()
+    {
+        OnMove(1);
+    }
 }
