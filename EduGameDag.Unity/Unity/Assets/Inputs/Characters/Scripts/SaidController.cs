@@ -28,8 +28,12 @@ public class SaidController : MonoBehaviour
 
     void OnMove(int direction)
     {
-        if (currentRoad < 4 && currentRoad > 0)
-            currentRoad += direction;
+        int newRaod = currentRoad + direction;
+        if (newRaod < 4 && newRaod > -1)
+        {
+            currentRoad = newRaod;
+            isJump = true;
+        }
         else
             Debug.Log("Error!");
     }

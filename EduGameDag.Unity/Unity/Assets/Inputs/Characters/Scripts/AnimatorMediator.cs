@@ -14,7 +14,12 @@ public class AnimatorMediator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _animator.SetBool("Jump", _saidController.isJump); 
+        
         _animator.SetBool("IsGame", _saidController.isGameOn);
+        if(_saidController.isJump)
+        { 
+            _animator.SetTrigger("Jump");
+            _saidController.isJump = false;
+        }
     }
 }
