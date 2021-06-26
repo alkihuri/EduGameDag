@@ -16,7 +16,7 @@ public class SaidController : MonoBehaviour
     }
     IEnumerator StartGame()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0.1f);
         isGameOn = true;
     }
     // Update is called once per frame
