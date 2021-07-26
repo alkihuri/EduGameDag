@@ -5,24 +5,45 @@ using UnityEngine;
 public class GameUXController : MonoBehaviour
 {
     [SerializeField] SaidController _saidController;
-    Touch touch;
+    private Vector2 startTouchPosition;
+    [SerializeField] private float touchThreshold = 20f;
     private void Start()
     {
         _saidController = GetComponent<SaidController>();
     }
-    // Update is called once per frame
     private void Update()
     {
-       // touch = Input.GetTouch(0); 
-        if (touch.deltaPosition.x > 0f || Input.GetKeyDown(KeyCode.RightArrow))
+        if(Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+            WorkWithTouches();
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             _saidController.OnRightMove();
-            Debug.Log("right");
         }
-        if (touch.deltaPosition.x < 0f || Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             _saidController.OnLeftMove();
-            Debug.Log("left");
+        }
+    }
+    void WorkWithTouches()
+    {
+        Touch touch = Input.GetTouch(0);
+        if (touch.phase == TouchPhase.Began)
+        {
+            startTouchPosition = touch.position;
+        }
+        else if (touch.phase == TouchPhase.Ended)
+        {
+            if (Mathf.Abs(touch.position.x - startTouchPosition.x) > touchThreshold)
+            {
+                if ((touch.position.x - startTouchPosition.x) > 0)
+                {
+                    _saidController.OnRightMove();
+                }
+                else
+                {
+                    _saidController.OnLeftMove();
+                }
+            }
         }
     }
 }

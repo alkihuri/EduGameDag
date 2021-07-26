@@ -11,13 +11,11 @@ public class AjdahaDistanceController : MonoBehaviour
     [SerializeField,Range(0,4)] int random = 1;
     float randomSinShit = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
-      float needDisctande;
-    // Update is called once per frame
+    float needDisctande;
     void Update()
     {
 

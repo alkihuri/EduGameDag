@@ -23,7 +23,7 @@ public class QustionGenerator : MonoBehaviour
         }
     }
 
-    public void   VoidGenerateCubes()
+    public void VoidGenerateCubes()
     {
 
         _text.text = QustionsAnswers.questions.Split('#')[currentQuest];
@@ -41,10 +41,5 @@ public class QustionGenerator : MonoBehaviour
             }
         }
 
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
