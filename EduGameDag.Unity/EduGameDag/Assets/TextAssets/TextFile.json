@@ -1,0 +1,15 @@
+{
+  "quests": [
+    {
+      "question": "Сколько сторон у треугольника?",
+      "wrong_answers": [ "1", "2", "4" ],
+      "right_answer": "3"
+    },
+    {
+      "question": "Сколько сторон у четырёхугольника?",
+      "wrong_answers": [ "1", "2", "3" ],
+      "right_answer": "4"
+    }
+  ],
+  "questCount": 2
+}
