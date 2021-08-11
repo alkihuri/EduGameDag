@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class QustController : MonoBehaviour
+public class QuestController : MonoBehaviour
 {
     [SerializeField]
     Color right, wrong;
@@ -44,7 +44,8 @@ public class QustController : MonoBehaviour
                 QustionsAnswers.scores++;
             else
                 QustionsAnswers.scores--;
-            Destroy(gameObject);
+            QuestionGenerator.Instance.GenerateNewLevel();
+            Destroy(this.gameObject);
         }
     }
 }

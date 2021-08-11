@@ -1,15 +1,53 @@
 {
-  "quests": [
+  "tourQuests": 
+  [
     {
-      "question": "Сколько сторон у треугольника?",
-      "wrong_answers": [ "1", "2", "4" ],
-      "right_answer": "3"
+      "questCount": 2,
+      "tourName": "Название предмета", 
+      "quests": [
+        {
+          "question": "Сколько сторон у треугольника?",
+          "wrong_answers": [ "1", "2", "4" ],
+          "right_answer": "3"
+        },
+        {
+          "question": "Сколько сторон у четырёхугольника?",
+          "wrong_answers": [ "1", "2", "3" ],
+          "right_answer": "4"
+        }
+      ]
     },
     {
-      "question": "Сколько сторон у четырёхугольника?",
-      "wrong_answers": [ "1", "2", "3" ],
-      "right_answer": "4"
+      "questCount": 2,
+      "tourName": "name",
+      "quests": [
+        {
+          "question": "Чё покайфу 2-1?",
+          "wrong_answers": [ "1", "2", "4" ],
+          "right_answer": "3"
+        },
+        {
+          "question": "Чё покайфу 2-2?",
+          "wrong_answers": [ "1", "2", "3" ],
+          "right_answer": "4"
+        }
+      ]
+    },
+    {
+      "questCount": 2,
+      "tourName": "name",
+      "quests": [
+        {
+          "question": "Чё покайфу 3-1?",
+          "wrong_answers": [ "1", "2", "4" ],
+          "right_answer": "3"
+        },
+        {
+          "question": "Чё покайфу 3-2",
+          "wrong_answers": [ "1", "2", "3" ],
+          "right_answer": "4"
+        }
+      ]
     }
-  ],
-  "questCount": 2
+  ]
 }

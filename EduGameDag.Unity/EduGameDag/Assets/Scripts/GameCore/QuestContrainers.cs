@@ -15,3 +15,9 @@ public class QuestPack
     public Quest[] quests;
     public int questCount; //TODO: Create smth for this
 }
+[System.Serializable]
+public class Tour
+{
+    public string tourName;
+    public QuestPack[] tourQuests;
+}
