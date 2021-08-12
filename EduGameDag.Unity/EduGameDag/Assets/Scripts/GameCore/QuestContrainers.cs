@@ -2,22 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Quest
+namespace GameCore
 {
-    public string question;
-    public string[] wrong_answers;
-    public string right_answer;
-}
-[System.Serializable]
-public class QuestPack
-{
-    public Quest[] quests;
-    public int questCount; //TODO: Create smth for this
-}
-[System.Serializable]
-public class Tour
-{
-    public string tourName;
-    public QuestPack[] tourQuests;
+    [System.Serializable]
+    public class Quest
+    {
+        public string question;
+        public string[] wrong_answers;
+        public string right_answer;
+    }
+    [System.Serializable]
+    public class QuestPack
+    {
+        public Quest[] quests;
+        public int questCount; //TODO: Create smth for this
+    }
+    [System.Serializable]
+    public class Tour
+    {
+        public string tourName;
+        public QuestPack[] tourQuests;
+    }
 }

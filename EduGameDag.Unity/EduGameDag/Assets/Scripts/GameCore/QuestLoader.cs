@@ -1,15 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class QuestLoader : MonoBehaviour
+namespace GameCore
 {
-    void Start()
+    public class QuestLoader : MonoBehaviour
     {
+        void Start()
+        {
         
-    }
-    void Update()
-    {
+        }
+        void Update()
+        {
         
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Entities.Ajdaha;
 using UnityEngine;
 using UnityEngine.UI;
 
