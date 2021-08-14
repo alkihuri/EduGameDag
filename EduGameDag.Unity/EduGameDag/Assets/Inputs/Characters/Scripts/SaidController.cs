@@ -19,7 +19,6 @@ public class SaidController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         isGameOn = true;
     }
-    // Update is called once per frame
     void Update()
     {
         if(isGameOn)

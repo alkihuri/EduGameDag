@@ -1,25 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class AnimatorMediator : MonoBehaviour
+namespace Inputs.Characters.Scripts
 {
-    [SerializeField] Animator _animator;
-    [SerializeField] SaidController _saidController;
-    private void Start()
+    public class AnimatorMediator : MonoBehaviour
     {
-        _animator = GetComponentInChildren<Animator>();
-        _saidController = GetComponent<SaidController>();
-    }
-    // Update is called once per frame
-    void Update()
-    {
+        [SerializeField] Animator _animator;
+        [SerializeField] SaidController _saidController;
+        private void Start()
+        {
+            _animator = GetComponentInChildren<Animator>();
+            _saidController = GetComponent<SaidController>();
+        }
         
-        _animator.SetBool("IsGame", _saidController.isGameOn);
-        if(_saidController.isJump)
-        { 
-            _animator.SetTrigger("Jump");
-            _saidController.isJump = false;
+        void Update()
+        {
+        
+            _animator.SetBool("IsGame", _saidController.isGameOn);
+            if(_saidController.isJump)
+            { 
+                _animator.SetTrigger("Jump");
+                _saidController.isJump = false;
+            }
         }
     }
 }
