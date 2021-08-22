@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using GameCore.QuestPrefabs;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -11,12 +12,16 @@ namespace GameCore.Qustions
     {
         public static QuestionGenerator Instance;
         public TextAsset jsonFile;
+
         [SerializeField]
         private Text _text;
+
         [SerializeField]
         private List<Transform> listOfQuestionToSpawm;
+
         [SerializeField]
         private GameObject cube;
+
         //private float
         private GameObject[] objects = new GameObject[4];
         private QuestPack questPack;
@@ -33,6 +38,16 @@ namespace GameCore.Qustions
                 Instance = this;
         }
 
+        private void ClearObjects()
+        {
+            if (objects != null && objects.Length > 0)
+            {
+                foreach (var obj in objects)
+                {
+                    Destroy(obj);
+                }   
+            }
+        }
         private void Start()
         {
             tourQuest = JsonUtility.FromJson<Tour>(jsonFile.text);
@@ -40,7 +55,7 @@ namespace GameCore.Qustions
             OnLoadNewSubject += GenerateNewLevel;
         }
 
-        public void LoadNewSubject()
+        private void LoadNewSubject()
         {
             currentQuestPack += 1;
             currentQuest = 0;
@@ -52,7 +67,6 @@ namespace GameCore.Qustions
         {
             questPack = tourQuest.tourQuests[currentQuestPack];
             questCountInPack = questPack.questCount;
-            Debug.Log("Quests initialized");
         }
 
         private IEnumerator ChangeQuestion()
@@ -60,34 +74,36 @@ namespace GameCore.Qustions
             yield return new WaitForSeconds(4f);
             LoadNewSubject();
         }
-    
+
         public void GenerateNewLevel()
         {
+            ClearObjects();
             if (currentQuest != questCountInPack)
             {
                 currentQuest++;
-                GenerateCubes();    
+                GenerateCubes();
             }
             else
             {
                 LoadNewSubject();
             }
         }
+
         private void GenerateCubes()
         {
             Debug.Log(questPack.quests.Length);
-            _text.text = questPack.quests[currentQuest-1].question;
+            _text.text = questPack.quests[currentQuest - 1].question;
             for (var i = 0; i < 3; i++)
             {
                 var newOne = Instantiate(cube, listOfQuestionToSpawm[i].position, Quaternion.identity);
-                var answerText = questPack.quests[currentQuest-1].wrong_answers[i].ToString();
+                var answerText = questPack.quests[currentQuest - 1].wrong_answers[i].ToString();
                 objects[i] = newOne;
                 newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
             }
 
             var rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
             objects[3] = rObj;
-            rObj.GetComponent<AnswerObjectController>().SetRight(questPack.quests[currentQuest-1].right_answer);
+            rObj.GetComponent<AnswerObjectController>().SetRight(questPack.quests[currentQuest - 1].right_answer);
             ShuffleAnswers(ref objects);
         }
 
