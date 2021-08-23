@@ -6090,7 +6090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1198430586
 Transform:
   m_ObjectHideFlags: 0
@@ -7169,6 +7169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 20
+  packCount: 10
   envPacks:
   - {fileID: 5892018390629247876, guid: 5c7d6b05339fa6443b17d772fb89da2f, type: 3}
   - {fileID: 3910541154303464857, guid: 85fdcaf1d7af08a409d86f5b33ed5eaf, type: 3}
