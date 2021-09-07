@@ -6,7 +6,8 @@ using UnityEngine.Serialization;
 
 public class SaidController : MonoBehaviour
 {
-    private event Action OnJump;
+    public event Action OnJump;
+    public event Action<int> OnMoveAction;
     public bool isGameOn;
     public bool isJump;
 
@@ -17,16 +18,10 @@ public class SaidController : MonoBehaviour
     [SerializeField]
     private AnimatorEventHandler animatorEventHandler;
 
-    [SerializeField, Range(0, 10)]
-    float speedOftransition = 5;
-
     [SerializeField, Range(0, 4)]
     int currentRoad;
 
-    [SerializeField]
-    List<Transform> roads; // have to be serialized
 
-    // Start is called before the first frame update
     void Start()
     {
         StartCoroutine("StartGame");
@@ -39,12 +34,6 @@ public class SaidController : MonoBehaviour
         isGameOn = true;
     }
 
-    void Update()
-    {
-        if (isGameOn)
-            transform.position = Vector3.MoveTowards(transform.position,
-                roads[currentRoad].position + new Vector3(0, 1, 0), speedOftransition / 10);
-    }
 
     private void OnGround()
     {
@@ -61,9 +50,8 @@ public class SaidController : MonoBehaviour
             isJump = true;
             particle.SetActive(false);
             OnJump?.Invoke();
+            OnMoveAction?.Invoke(currentRoad);
         }
-        else
-            Debug.Log("Error!");
     }
 
     public void OnLeftMove()

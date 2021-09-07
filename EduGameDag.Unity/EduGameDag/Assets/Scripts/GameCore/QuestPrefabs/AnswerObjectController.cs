@@ -9,6 +9,16 @@ namespace GameCore.QuestPrefabs
         [SerializeField]
         Color right, wrong;
 
+        private float speed;
+
+        public float Speed
+        {
+            get
+            {
+                return speed;
+            }
+            set => speed = value;
+        }
         [SerializeField]
         bool isRightAnswer;
 
@@ -16,6 +26,7 @@ namespace GameCore.QuestPrefabs
         {
             right = Color.green;
             wrong = Color.red;
+            speed = QuestionGenerator.Instance.GameSpeed;
         }
 
         void SetColor(Color colorToSet)
@@ -46,9 +57,9 @@ namespace GameCore.QuestPrefabs
         {
             if (!other.gameObject.GetComponent<SaidController>()) return;
             if (isRightAnswer)
-                QustionsAnswers.scores++;
+                ScoreController.instance.Score++;
             else
-                QustionsAnswers.scores--;
+                ScoreController.instance.Score--;
             QuestionGenerator.Instance.GenerateNewLevel();
             Destroy(this.gameObject);
         }

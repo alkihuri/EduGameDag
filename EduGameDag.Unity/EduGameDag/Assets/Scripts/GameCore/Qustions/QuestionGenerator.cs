@@ -22,6 +22,32 @@ namespace GameCore.Qustions
         [SerializeField]
         private GameObject cube;
 
+        public event Action JsonLoaded;
+        private float gameSpeed;
+
+        public float GameSpeed
+        {
+            get
+            {
+                return gameSpeed;
+            }
+            set => gameSpeed = value;
+        }
+
+        private int questCount;
+        public int QuestionCount
+        {
+            get
+            {
+                questCount = 0;
+                foreach (var qPack in tourQuest.tourQuests)
+                {
+                    questCount += qPack.questCount;
+                }
+                return questCount;
+            }
+        }
+
         //private float
         private GameObject[] objects = new GameObject[4];
         private QuestPack questPack;
@@ -29,7 +55,6 @@ namespace GameCore.Qustions
         private int currentQuest = -1;
         private int questCountInPack;
         private int currentQuestPack = -1;
-
         public event Action OnLoadNewSubject; //Событие, вызывающееся при появлении нового предмета
 
         private void Awake()
@@ -51,20 +76,32 @@ namespace GameCore.Qustions
         private void Start()
         {
             tourQuest = JsonUtility.FromJson<Tour>(jsonFile.text);
+            StartCoroutine(CheckLoadedJson());
             StartCoroutine(ChangeQuestion());
             OnLoadNewSubject += GenerateNewLevel;
+        }
+
+        private IEnumerator CheckLoadedJson()
+        {
+            while (tourQuest == null)
+                yield return null;
+            Debug.Log("tour not null");
+            JsonLoaded?.Invoke();
+            yield return null;
         }
 
         private void LoadNewSubject()
         {
             currentQuestPack += 1;
-            currentQuest = 0;
+            currentQuest = -1;
             InitializeQuest();
             OnLoadNewSubject?.Invoke();
         }
 
         private void InitializeQuest()
         {
+            if(tourQuest.tourQuests[currentQuest]==null)
+                return;;
             questPack = tourQuest.tourQuests[currentQuestPack];
             questCountInPack = questPack.questCount;
         }
@@ -78,7 +115,7 @@ namespace GameCore.Qustions
         public void GenerateNewLevel()
         {
             ClearObjects();
-            if (currentQuest != questCountInPack)
+            if (currentQuest < questCountInPack-1)
             {
                 currentQuest++;
                 GenerateCubes();
@@ -91,19 +128,17 @@ namespace GameCore.Qustions
 
         private void GenerateCubes()
         {
-            Debug.Log(questPack.quests.Length);
-            _text.text = questPack.quests[currentQuest - 1].question;
+            _text.text = questPack.quests[currentQuest].question;
             for (var i = 0; i < 3; i++)
             {
                 var newOne = Instantiate(cube, listOfQuestionToSpawm[i].position, Quaternion.identity);
-                var answerText = questPack.quests[currentQuest - 1].wrong_answers[i].ToString();
+                var answerText = questPack.quests[currentQuest].wrong_answers[i].ToString();
                 objects[i] = newOne;
                 newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
             }
-
             var rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
             objects[3] = rObj;
-            rObj.GetComponent<AnswerObjectController>().SetRight(questPack.quests[currentQuest - 1].right_answer);
+            rObj.GetComponent<AnswerObjectController>().SetRight(questPack.quests[currentQuest].right_answer);
             ShuffleAnswers(ref objects);
         }
 

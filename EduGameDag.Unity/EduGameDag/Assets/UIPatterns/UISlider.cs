@@ -1,15 +1,34 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DG.Tweening;
 using Entities.Ajdaha;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UISlider : MonoBehaviour
 {
-    [SerializeField, Range(0, 100)] float distance;
-     void Update()
+    public static UISlider instance;
+
+
+    [SerializeField]
+    private Image imageSlider;
+
+    private void Awake()
     {
-        distance = GameObject.FindObjectOfType<AjdahaDistanceController>().distance / QustionsAnswers.maxNumOfQust * 5;
-        GetComponent<Slider>().value = distance /100;
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    void Start()
+    {
+        FindObjectOfType<AjdahaDistanceController>().GetComponent<AjdahaDistanceController>().distanceValueChanged += UISlider.instance.ChangeSliderImageDistanceValue;
+    }
+
+    private float distanceFill;
+    public void ChangeSliderImageDistanceValue(float distanceVal)
+    {
+        Debug.Log("changed slider" + distanceVal);
+        distanceFill += distanceVal;
+        DOTween.To(() => imageSlider.fillAmount, x => imageSlider.fillAmount = x, distanceFill, 1);
     }
 }
