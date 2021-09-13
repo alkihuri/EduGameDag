@@ -20,8 +20,7 @@ namespace Entities.Ajdaha
 
         [SerializeField, Range(0, 4)]
         int random = 1;
-
-
+        
         public event Action<float> distanceValueChanged;
 
         public float NeedDistance
@@ -34,19 +33,37 @@ namespace Entities.Ajdaha
             }
         }
 
+        public float PreviousDistance
+        {
+            get { return needDistance; }
+            set
+            {
+                needDistance = value;
+            }
+        }
+        private float previousDistance;
         private float needDistance;
 
         private void Start()
         {
-            ScoreController.instance.OnScoreValueChange += ChangeValueDistance;
-            QuestionGenerator.Instance.JsonLoaded += () => { ScoreController.instance.Score = 0; };
+            QuestionGenerator.Instance.OnJsonLoaded += () =>
+            {
+                previousDistance = QuestionGenerator.Instance.QuestionCount;
+                ScoreController.instance.Score = 0;
+                ChangeValueDistance();
+                ScoreController.instance.OnScoreValueChange += ChangeValueDistance;
+            };
         }
-
         void ChangeValueDistance()
         {
             needDistance = (QuestionGenerator.Instance.QuestionCount - ScoreController.instance.Score);
-            distanceValueChanged?.Invoke(0.16f);
+            var increaseCount = (previousDistance - needDistance) > 0
+                ? (100f / QuestionGenerator.Instance.QuestionCount / 100f)
+                : -(100f / QuestionGenerator.Instance.QuestionCount / 100f); // сори за это явление говнокода :(
             Debug.Log(QuestionGenerator.Instance.QuestionCount);
+            Debug.Log(increaseCount + " increase Count");
+            distanceValueChanged?.Invoke(increaseCount);
+            previousDistance = needDistance;
             transform.DOMove(new Vector3(listOfRoads[random].position.x, listOfRoads[random].position.y,
                 playerTransform.position.z + needDistance), 1f);
         }

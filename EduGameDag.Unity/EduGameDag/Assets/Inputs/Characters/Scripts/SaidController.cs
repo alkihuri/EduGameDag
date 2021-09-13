@@ -9,14 +9,23 @@ public class SaidController : MonoBehaviour
     public event Action OnJump;
     public event Action<int> OnMoveAction;
     public bool isGameOn;
-    public bool isJump;
+    private bool isJump;
+
+    public bool IsJump
+    {
+        get { return isJump; }
+        set
+        {
+            isJump = value;
+        }
+    }
 
     [SerializeField]
     private GameObject particle;
 
-    [FormerlySerializedAs("_animatorEventHandler")]
-    [SerializeField]
-    private AnimatorEventHandler animatorEventHandler;
+    
+    public AnimatorEventHandler animatorEventHandler;
+    public SaidMovement _saidMovement;
 
     [SerializeField, Range(0, 4)]
     int currentRoad;
@@ -38,16 +47,18 @@ public class SaidController : MonoBehaviour
     private void OnGround()
     {
         particle.SetActive(true);
-        isJump = false;
+        IsJump = false;
     }
 
     void OnMove(int direction)
     {
+        if(IsJump)
+            return;
         int newRaod = currentRoad + direction;
         if (newRaod < 4 && newRaod > -1)
         {
             currentRoad = newRaod;
-            isJump = true;
+            IsJump = true;
             particle.SetActive(false);
             OnJump?.Invoke();
             OnMoveAction?.Invoke(currentRoad);

@@ -22,7 +22,7 @@ namespace GameCore.Qustions
         [SerializeField]
         private GameObject cube;
 
-        public event Action JsonLoaded;
+        public event Action OnJsonLoaded;
         private float gameSpeed;
 
         public float GameSpeed
@@ -39,14 +39,11 @@ namespace GameCore.Qustions
         {
             get
             {
-                questCount = 0;
-                foreach (var qPack in tourQuest.tourQuests)
-                {
-                    questCount += qPack.questCount;
-                }
+
                 return questCount;
             }
         }
+
 
         //private float
         private GameObject[] objects = new GameObject[4];
@@ -61,6 +58,16 @@ namespace GameCore.Qustions
         {
             if (Instance == null)
                 Instance = this;
+            OnJsonLoaded += CalculateQuestions;
+        }
+        
+        private void CalculateQuestions()
+        {
+            questCount = 0;
+            foreach (var qPack in tourQuest.tourQuests)
+            {
+                questCount += qPack.questCount;
+            }
         }
 
         private void ClearObjects()
@@ -86,7 +93,7 @@ namespace GameCore.Qustions
             while (tourQuest == null)
                 yield return null;
             Debug.Log("tour not null");
-            JsonLoaded?.Invoke();
+            OnJsonLoaded?.Invoke();
             yield return null;
         }
 
@@ -100,10 +107,14 @@ namespace GameCore.Qustions
 
         private void InitializeQuest()
         {
-            if(tourQuest.tourQuests[currentQuest]==null)
-                return;;
-            questPack = tourQuest.tourQuests[currentQuestPack];
-            questCountInPack = questPack.questCount;
+            try
+            {
+                questPack = tourQuest.tourQuests[currentQuestPack];
+                questCountInPack = questPack.questCount;    
+            }catch(IndexOutOfRangeException e)
+            {
+             // TODO: Game Ended   
+            }
         }
 
         private IEnumerator ChangeQuestion()

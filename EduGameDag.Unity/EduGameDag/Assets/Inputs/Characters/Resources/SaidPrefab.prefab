@@ -910,7 +910,6 @@ GameObject:
   - component: {fileID: 4022589894757870081}
   - component: {fileID: 3105677611285764003}
   - component: {fileID: 27764337}
-  - component: {fileID: 27764338}
   - component: {fileID: 27764336}
   - component: {fileID: 338180647088197507}
   m_Layer: 0
@@ -949,13 +948,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGameOn: 0
   isJump: 0
-  speedOftransition: 1
+  particle: {fileID: 0}
+  animatorEventHandler: {fileID: 0}
   currentRoad: 0
-  roads:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &27764337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -969,20 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _saidController: {fileID: 0}
---- !u!114 &27764338
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9118653507739957086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a01fc7df1cd33eb4bbeb972874999049, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
-  _saidController: {fileID: 0}
+  touchThreshold: 20
 --- !u!65 &27764336
 BoxCollider:
   m_ObjectHideFlags: 0

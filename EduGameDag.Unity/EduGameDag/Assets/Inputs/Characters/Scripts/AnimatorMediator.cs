@@ -14,13 +14,7 @@ namespace Inputs.Characters.Scripts
         
         void Update()
         {
-        
             _animator.SetBool("IsGame", _saidController.isGameOn);
-            if(_saidController.isJump)
-            { 
-                _animator.SetTrigger("Jump");
-                _saidController.isJump = false;
-            }
         }
     }
 }

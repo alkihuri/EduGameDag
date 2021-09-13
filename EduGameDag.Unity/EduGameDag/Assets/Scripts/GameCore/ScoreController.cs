@@ -15,7 +15,6 @@ namespace GameCore
             get => score;
             set
             {
-                Debug.Log("changedScore");
                 score = value;
                 OnScoreValueChange?.Invoke();
             }
