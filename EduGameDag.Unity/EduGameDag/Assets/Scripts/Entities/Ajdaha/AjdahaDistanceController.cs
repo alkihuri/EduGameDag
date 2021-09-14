@@ -46,7 +46,7 @@ namespace Entities.Ajdaha
 
         private void Start()
         {
-            QuestionGenerator.Instance.OnJsonLoaded += () =>
+            QuestionGenerator.Instance.questLoader.OnJsonLoaded += () =>
             {
                 previousDistance = QuestionGenerator.Instance.QuestionCount;
                 ScoreController.instance.Score = 0;
