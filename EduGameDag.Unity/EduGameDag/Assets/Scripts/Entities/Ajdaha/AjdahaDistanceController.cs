@@ -46,7 +46,7 @@ namespace Entities.Ajdaha
 
         private void Start()
         {
-            QuestionGenerator.Instance.questLoader.OnJsonLoaded += () =>
+            QuestionGenerator.Instance.OnQuestCounted += () =>
             {
                 previousDistance = QuestionGenerator.Instance.QuestionCount;
                 ScoreController.instance.Score = 0;
@@ -56,12 +56,14 @@ namespace Entities.Ajdaha
         }
         void ChangeValueDistance()
         {
+            Debug.Log(QuestionGenerator.Instance.QuestionCount + "[" + Time.time.ToString("0.0") + "] ") ;
+            if(QuestionGenerator.Instance.QuestionCount == 0)
+                return;
+            Debug.Log(QuestionGenerator.Instance.QuestionCount);
             needDistance = (QuestionGenerator.Instance.QuestionCount - ScoreController.instance.Score);
             var increaseCount = (previousDistance - needDistance) > 0
                 ? (100f / QuestionGenerator.Instance.QuestionCount / 100f)
                 : -(100f / QuestionGenerator.Instance.QuestionCount / 100f); // сори за это явление говнокода :(
-            Debug.Log(QuestionGenerator.Instance.QuestionCount);
-            Debug.Log(increaseCount + " increase Count");
             distanceValueChanged?.Invoke(increaseCount);
             previousDistance = needDistance;
             transform.DOMove(new Vector3(listOfRoads[random].position.x, listOfRoads[random].position.y,

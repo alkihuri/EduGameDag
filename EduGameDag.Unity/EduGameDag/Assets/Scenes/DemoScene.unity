@@ -1044,6 +1044,7 @@ GameObject:
   m_Component:
   - component: {fileID: 899376138}
   - component: {fileID: 899376139}
+  - component: {fileID: 899376140}
   m_Layer: 0
   m_Name: QuizMode
   m_TagString: Untagged
@@ -1077,7 +1078,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e8e8793195aace4bbfa0889a2ae2557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jsonFile: {fileID: 4900000, guid: a78629112b8c68540862ec831185f595, type: 3}
   _text: {fileID: 1785397430}
   listOfQuestionToSpawm:
   - {fileID: 677450954}
@@ -1085,6 +1085,21 @@ MonoBehaviour:
   - {fileID: 439813179}
   - {fileID: 487944185}
   cube: {fileID: 9043936541670776618, guid: 7c623257a36a5db438c63a2c247e634c, type: 3}
+  questLoader: {fileID: 899376140}
+--- !u!114 &899376140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899376137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02889cd61117c554c824fb4c990214e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jsonFile: {fileID: 4900000, guid: a78629112b8c68540862ec831185f595, type: 3}
+  QuestionGenerator: {fileID: 899376139}
 --- !u!1 &910688316
 GameObject:
   m_ObjectHideFlags: 0

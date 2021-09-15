@@ -33,11 +33,11 @@ namespace GameCore
         public QuestionGenerator QuestionGenerator;
         public event Action OnJsonLoaded;
         
-        private void Start()
+        private IEnumerator Start()
         {
+            yield return new WaitForEndOfFrame();
             tourQuest = JsonUtility.FromJson<Tour>(jsonFile.text);
             StartCoroutine(CheckLoadedJson());
-
         }
         
         private IEnumerator CheckLoadedJson()
@@ -46,6 +46,7 @@ namespace GameCore
                 yield return null;
             Debug.Log("tour not null");
             OnJsonLoaded?.Invoke();
+            yield return new WaitForSeconds(1f);
             yield return null;
         }
         

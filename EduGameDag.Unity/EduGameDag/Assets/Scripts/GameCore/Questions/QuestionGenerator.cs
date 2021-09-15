@@ -38,6 +38,7 @@ namespace GameCore.Qustions
             get { return questCount; }
         }
 
+        public event Action OnQuestCounted;
 
         //private float
         private GameObject[] objects = new GameObject[4];
@@ -50,7 +51,6 @@ namespace GameCore.Qustions
         {
             if (Instance == null)
                 Instance = this;
-            questLoader.OnJsonLoaded += CalculateQuestions;
         }
 
         private void CalculateQuestions()
@@ -60,6 +60,8 @@ namespace GameCore.Qustions
             {
                 questCount += qPack.questCount;
             }
+            Debug.Log("quest calculatedd" + "[" + Time.time.ToString("0.0") + "] ");
+            OnQuestCounted?.Invoke();
         }
 
         private void ClearObjects()
@@ -77,6 +79,7 @@ namespace GameCore.Qustions
         {
             StartCoroutine(ChangeQuestion());
             OnLoadNewSubject += GenerateNewLevel;
+            questLoader.OnJsonLoaded += CalculateQuestions;
         }
 
 
