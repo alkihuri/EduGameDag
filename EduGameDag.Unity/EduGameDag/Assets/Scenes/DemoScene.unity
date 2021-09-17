@@ -878,7 +878,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761279626}
-  m_LocalRotation: {x: -0.110671416, y: -0.7693325, z: -0.13873671, w: 0.6137031}
+  m_LocalRotation: {x: -0.11067142, y: -0.7693325, z: -0.13873671, w: 0.6137031}
   m_LocalPosition: {x: 1.36, y: 0.48000002, z: 0.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1238,7 +1238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac7a4c427269844fa5b9716b1520e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 0.4
+  scrollSpeed: 0.2
   planeRenderer: {fileID: 1066206398}
 --- !u!1 &1140547924
 GameObject:
@@ -7235,7 +7235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8caea671dfedfa14390b9e4ab68c83d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: 20
+  scrollSpeed: 40
   packCount: 10
   envPacks:
   - {fileID: 5892018390629247876, guid: 37c6bf2dbbbae1d41a11024328bfc404, type: 3}
@@ -7660,8 +7660,8 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 1, b: 1, a: 0.63529414}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      minColor: {r: 0.9811321, g: 0.94821715, b: 0.35635456, a: 0.63529414}
+      maxColor: {r: 0.5566038, g: 0.4654746, b: 0.09714311, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -7723,8 +7723,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.9
-      minScalar: 0.5
+      scalar: 0.6
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:

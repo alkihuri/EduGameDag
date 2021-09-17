@@ -100,6 +100,7 @@ namespace GameCore.Qustions
             }
             catch (IndexOutOfRangeException e)
             {
+                Debug.Log("Here we can catch game ending");
                 // TODO: Game Ended   
             }
         }
