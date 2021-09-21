@@ -8,7 +8,7 @@ namespace GameCore
     public class QuestLoader : MonoBehaviour
     {
         private QuestPack questionPack;
-        private Tour tourQuest;
+        private Tour _tourQuests;
 
         public QuestPack QuestionPack
         {
@@ -22,11 +22,11 @@ namespace GameCore
             }
         }
 
-        public Tour TourQuest
+        public Tour TourQuests
         {
             get
             {
-                return tourQuest;
+                return _tourQuests;
             }
         }
         public TextAsset jsonFile;
@@ -36,13 +36,13 @@ namespace GameCore
         private IEnumerator Start()
         {
             yield return new WaitForEndOfFrame();
-            tourQuest = JsonUtility.FromJson<Tour>(jsonFile.text);
+            _tourQuests = JsonUtility.FromJson<Tour>(jsonFile.text);
             StartCoroutine(CheckLoadedJson());
         }
         
         private IEnumerator CheckLoadedJson()
         {
-            while (tourQuest == null)
+            while (_tourQuests == null)
                 yield return null;
             Debug.Log("tour not null");
             OnJsonLoaded?.Invoke();

@@ -7,8 +7,14 @@ namespace GameCore
 {
     public class GameStateController : MonoBehaviour
     {
+        public static GameStateController instance;
         public event Action GameEndEvent;
 
+        private void Awake()
+        {
+            if(instance == null)
+                instance = this;
+        }
         private void Start()
         {
             GameEndEvent += CountScores;

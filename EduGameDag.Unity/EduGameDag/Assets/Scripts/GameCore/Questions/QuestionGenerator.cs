@@ -45,7 +45,7 @@ namespace GameCore.Qustions
         private int currentQuest = -1;
         private int questCountInPack;
         private int currentQuestPack = -1;
-        public event Action OnLoadNewSubject; //Событие, вызывающееся при появлении нового предмета
+        public event Action OnLoadNewSubject; //Событие, вызывающееся при появлении нового учебного предмета
 
         private void Awake()
         {
@@ -56,14 +56,14 @@ namespace GameCore.Qustions
         private void CalculateQuestions()
         {
             questCount = 0;
-            foreach (var qPack in questLoader.TourQuest.tourQuests)
+            foreach (var qPack in questLoader.TourQuests.tourQuests)
             {
                 questCount += qPack.questCount;
             }
             Debug.Log("quest calculatedd" + "[" + Time.time.ToString("0.0") + "] ");
             OnQuestCounted?.Invoke();
+            //TODO: Remake THIS SHIT
         }
-
         private void ClearObjects()
         {
             if (objects != null && objects.Length > 0)
@@ -95,7 +95,7 @@ namespace GameCore.Qustions
         {
             try
             {
-                questLoader.QuestionPack = questLoader.TourQuest.tourQuests[currentQuestPack];
+                questLoader.QuestionPack = questLoader.TourQuests.tourQuests[currentQuestPack];
                 questCountInPack = questLoader.QuestionPack.questCount;
             }
             catch (IndexOutOfRangeException e)
