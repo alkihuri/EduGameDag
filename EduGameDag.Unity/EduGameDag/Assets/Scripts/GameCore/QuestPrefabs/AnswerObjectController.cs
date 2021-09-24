@@ -60,7 +60,7 @@ namespace GameCore.QuestPrefabs
                 ScoreController.instance.Score++;
             else
                 ScoreController.instance.Score--;
-            QuestionGenerator.Instance.GenerateNewLevel();
+            QuestionGenerator.Instance.GenerateNewQuestLevel();
             Destroy(this.gameObject);
         }
     }

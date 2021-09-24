@@ -10,6 +10,8 @@ namespace GameCore
         public static GameStateController instance;
         public event Action GameEndEvent;
 
+        public event Action GameStarted;
+
         private void Awake()
         {
             if(instance == null)
@@ -18,6 +20,11 @@ namespace GameCore
         private void Start()
         {
             GameEndEvent += CountScores;
+        }
+
+        public void StartGame()
+        {
+            GameStarted?.Invoke();
         }
 
         private void CountScores()

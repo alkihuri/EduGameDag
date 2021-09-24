@@ -45,6 +45,23 @@ namespace GameCore.Qustions
         private int currentQuest = -1;
         private int questCountInPack;
         private int currentQuestPack = -1;
+
+        public int CurrentQuestPack
+        {
+            get
+            {
+                return currentQuestPack;
+                currentQuest = -1;
+            }
+            set
+            {
+                currentQuestPack = value;
+                // StartCoroutine(ChangeQuestion());
+
+            }
+        }
+        
+        
         public event Action OnLoadNewSubject; //Событие, вызывающееся при появлении нового учебного предмета
 
         private void Awake()
@@ -53,12 +70,14 @@ namespace GameCore.Qustions
                 Instance = this;
         }
 
-        private void CalculateQuestions()
+        //after game started
+        public void CalculateQuestions()
         {
             questCount = 0;
-            foreach (var qPack in questLoader.TourQuests.tourQuests)
+            Debug.Log(CurrentQuestPack);
+            foreach (var quest in questLoader.TourQuests.tourQuests[CurrentQuestPack].quests)
             {
-                questCount += qPack.questCount;
+                questCount += 1;
             }
             Debug.Log("quest calculatedd" + "[" + Time.time.ToString("0.0") + "] ");
             OnQuestCounted?.Invoke();
@@ -77,15 +96,16 @@ namespace GameCore.Qustions
 
         private void Start()
         {
-            StartCoroutine(ChangeQuestion());
-            OnLoadNewSubject += GenerateNewLevel;
-            questLoader.OnJsonLoaded += CalculateQuestions;
+            OnLoadNewSubject += GenerateNewQuestLevel;
+            GameStateController.instance.GameStarted += CalculateQuestions;
+            OnQuestCounted += LoadNewSubject;
+            // questLoader.OnJsonLoaded += CalculateQuestions;
         }
 
 
+        // after questCounted
         private void LoadNewSubject()
         {
-            currentQuestPack += 1;
             currentQuest = -1;
             InitializeQuest();
             OnLoadNewSubject?.Invoke();
@@ -111,7 +131,8 @@ namespace GameCore.Qustions
             LoadNewSubject();
         }
 
-        public void GenerateNewLevel()
+        //after quest counted
+        public void GenerateNewQuestLevel()
         {
             ClearObjects();
             if (currentQuest < questCountInPack - 1)

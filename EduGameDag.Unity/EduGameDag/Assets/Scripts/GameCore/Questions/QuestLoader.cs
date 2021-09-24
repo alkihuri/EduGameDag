@@ -45,8 +45,8 @@ namespace GameCore
             while (_tourQuests == null)
                 yield return null;
             Debug.Log("tour not null");
-            OnJsonLoaded?.Invoke();
             yield return new WaitForSeconds(1f);
+            OnJsonLoaded?.Invoke();
             yield return null;
         }
         

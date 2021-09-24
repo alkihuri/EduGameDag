@@ -27,6 +27,7 @@ public class UISlider : MonoBehaviour
     private float distanceFill;
     public void ChangeSliderImageDistanceValue(float distanceVal)
     {
+        Debug.Log(distanceFill);
         Debug.Log("changed slider" + distanceVal);
         distanceFill += distanceVal;
         DOTween.To(() => imageSlider.fillAmount, x => imageSlider.fillAmount = x, distanceFill, 1);
