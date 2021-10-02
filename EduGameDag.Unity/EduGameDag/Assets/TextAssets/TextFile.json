@@ -2,23 +2,23 @@
   "tourQuests": 
   [
     {
-      "questCount": 2,
-      "tourName": "Название предмета", 
+      "questCount": 4,
+      "tourName": "Математика", 
       "quests": [
         {
-          "question": "Вопрос 1-1",
+          "question": "Сколько сторон у 4-х угольника?",
           "wrong_answers": [ "1", "2", "4" ],
           "right_answer": "3"
         },
         {
-          "question": "Вопрос 1-2?",
-          "wrong_answers": [ "1", "2", "3" ],
-          "right_answer": "4"
+          "question": "Могут ли паралельные линии пересечься2?",
+          "wrong_answers": [ "Когда как", "2", "3" ],
+          "right_answer": "Нет"
         },
         {
-          "question": "Вопрос 1-3?",
-          "wrong_answers": [ "1", "2", "3" ],
-          "right_answer": "4"
+          "question": "10 + х = 12. Чему равен X?",
+          "wrong_answers": [ "1", "4", "3" ],
+          "right_answer": "2"
         },
         {
           "question": "Вопрос 1-4?",
@@ -29,7 +29,7 @@
     },
     {
       "questCount": 2,
-      "tourName": "name",
+      "tourName": "История",
       "quests": [
         {
           "question": "Чё покайфу 2-1?",
@@ -45,7 +45,7 @@
     },
     {
       "questCount": 2,
-      "tourName": "name",
+      "tourName": "Английский язык",
       "quests": [
         {
           "question": "Чё покайфу 3-1?",
