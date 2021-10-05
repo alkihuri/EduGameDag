@@ -38,19 +38,19 @@ namespace GameCore
             var difference = QuestionGenerator.Instance.QuestionCount - ScoreController.instance.Score;
             if (difference == 0)
             {
-                Debug.Log("win ebat");
+                Debug.Log("win ");
                 SceneLoader.SceneLoader.instance.SetWinScene();
                 //TODO: EZ WIN 
             }
             else if (difference < 5 && difference > 0)
             {
-                Debug.Log("win ebat");
+                Debug.Log("win not easy");
                 SceneLoader.SceneLoader.instance.SetWinScene();
                 //TODO: not ez win
             }
             else if (difference > 5)
             {
-                Debug.Log("lose ebat");
+                Debug.Log("lose");
                 SceneLoader.SceneLoader.instance.SetLoseScene();
                 //TODO: LOSE
             }

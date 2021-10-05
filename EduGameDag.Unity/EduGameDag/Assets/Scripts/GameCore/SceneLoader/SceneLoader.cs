@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,16 +28,33 @@ namespace GameCore.SceneLoader
             sceneList = new List<Scene>();
             PlayerPrefs.SetString(CURRENT_STATE_SCENE_KEY, GAME_SCENE_NAME);
             //А эта штука вызывает рекурсию и бесконечное кол-во сцен
-            // SetCurrentSceneState(GAME_SCENE_NAME); // начнем
+            CheckScene();
         }
 
-        void Update()
+        private void Update()
         {
-            //Уцы, эта суета нонстопом сцены спамила )))
-            // var needScene = PlayerPrefs.GetString(CURRENT_STATE_SCENE_KEY);
-            // sceneList = SceneManager.GetAllScenes().ToList();
-            // if (sceneList.Where(scene => scene.name != needScene).Count() == 0)
-            //     SetCurrentSceneState(needScene);
+            CheckScene();
+        }
+
+        private void CheckScene()
+        {
+            sceneList = SceneManager.GetAllScenes().ToList();
+            var needScene = PlayerPrefs.GetString(CURRENT_STATE_SCENE_KEY);
+            if (sceneList.Where(scene => scene.name == needScene).Count() == 0)
+            {
+                SetCurrentSceneState(needScene);
+                SceneManager.LoadScene(needScene, LoadSceneMode.Additive);
+            }
+            else
+            {
+                foreach( Scene  scene in sceneList )
+                {
+                    if( scene.name != needScene)
+                    {
+                        CloseScene(scene.name);
+                    }
+                }
+            }
         }
 
         public void CloseScene(string scene)
@@ -44,24 +63,31 @@ namespace GameCore.SceneLoader
             {
                 SceneManager.UnloadScene(scene);
             }
-            else
-                Debug.Log("клубника бомба");
         }
 
         public void SetCurrentSceneState(string rule) // lose -> select -> game
         {
             PlayerPrefs.SetString(CURRENT_STATE_SCENE_KEY, rule);
-            SceneManager.LoadSceneAsync(rule, LoadSceneMode.Additive);
+           
         }
 
         public void SetWinScene()
         {
             PlayerPrefs.SetString(CURRENT_STATE_SCENE_KEY, WIN_SCENE_NAME);
+            StartCoroutine(DummyTimer(10));
         }
 
         public void SetLoseScene()
         {
             PlayerPrefs.SetString(CURRENT_STATE_SCENE_KEY, LOSE_SCENE_NAME);
+            StartCoroutine(DummyTimer(10));
         }
+
+        private IEnumerator DummyTimer(float sec)
+        {
+            yield return new WaitForSeconds(sec);
+            PlayerPrefs.SetString(CURRENT_STATE_SCENE_KEY, GAME_SCENE_NAME);
+        }
+
     }
 }
