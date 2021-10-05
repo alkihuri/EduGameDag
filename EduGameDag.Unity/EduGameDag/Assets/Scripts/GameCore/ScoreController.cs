@@ -1,15 +1,15 @@
 ﻿using System;
-using Entities.Ajdaha;
 using UnityEngine;
 
 namespace GameCore
 {
-    public class ScoreController:MonoBehaviour
+    public class ScoreController : MonoBehaviour
     {
         public static ScoreController instance;
 
         public event Action OnScoreValueChange;
         private float score;
+
         public float Score
         {
             get => score;
@@ -19,11 +19,11 @@ namespace GameCore
                 OnScoreValueChange?.Invoke();
             }
         }
+
         private void Awake()
         {
             if (instance == null)
                 instance = this;
-            
         }
     }
 }

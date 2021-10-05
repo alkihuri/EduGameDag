@@ -1,20 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class PackGizmoDrawer : MonoBehaviour
+namespace AroundEnvironmentBehaivour
 {
-    [SerializeField] 
-    private Vector3 center;
-    
-    [SerializeField]     
-    private Vector3 size;
-
-    public void OnDrawGizmos()
+    public class PackGizmoDrawer : MonoBehaviour
     {
-        Gizmos.color = new Color(255, 0, 0, 0.4f);
-        center = transform.position;
-        Gizmos.DrawCube(center,size);
+        [SerializeField]
+        private Vector3 center;
+
+        [SerializeField]
+        private Vector3 size;
+
+        public void OnDrawGizmos()
+        {
+            Gizmos.color = new Color(255, 0, 0, 0.4f);
+            center = transform.position;
+            Gizmos.DrawCube(center, size);
+        }
     }
 }

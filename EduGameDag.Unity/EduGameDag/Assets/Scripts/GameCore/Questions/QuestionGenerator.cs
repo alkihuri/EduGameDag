@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-namespace GameCore.Qustions
+namespace GameCore.Questions
 {
     public class QuestionGenerator : MonoBehaviour
     {
@@ -40,7 +40,7 @@ namespace GameCore.Qustions
 
         public event Action OnQuestCounted;
 
-        //private float
+        //private vars
         private GameObject[] objects = new GameObject[4];
         private int currentQuest = -1;
         private int questCountInPack;
@@ -57,11 +57,10 @@ namespace GameCore.Qustions
             {
                 currentQuestPack = value;
                 // StartCoroutine(ChangeQuestion());
-
             }
         }
-        
-        
+
+
         public event Action OnLoadNewSubject; //Событие, вызывающееся при появлении нового учебного предмета
 
         private void Awake()
@@ -79,10 +78,12 @@ namespace GameCore.Qustions
             {
                 questCount += 1;
             }
+
             Debug.Log("quest calculatedd" + "[" + Time.time.ToString("0.0") + "] ");
             OnQuestCounted?.Invoke();
             //TODO: Remake THIS SHIT
         }
+
         private void ClearObjects()
         {
             if (objects != null && objects.Length > 0)
@@ -142,8 +143,13 @@ namespace GameCore.Qustions
             }
             else
             {
-                LoadNewSubject();
+                GameStateController.instance.GameOver();
             }
+            // else
+            // {
+            //     Debug.Log("QuestionGenerator NEW SUBJECT LOADED");
+            //     LoadNewSubject();
+            // }
         }
 
         private void GenerateCubes()
@@ -159,7 +165,8 @@ namespace GameCore.Qustions
 
             var rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
             objects[3] = rObj;
-            rObj.GetComponent<AnswerObjectController>().SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
+            rObj.GetComponent<AnswerObjectController>()
+                .SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
             ShuffleAnswers(ref objects);
         }
 

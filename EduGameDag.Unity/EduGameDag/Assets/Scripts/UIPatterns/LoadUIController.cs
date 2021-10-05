@@ -6,7 +6,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 using Entities.Ajdaha;
-using GameCore.Qustions;
 
 public class LoadUIController : MonoBehaviour
 {

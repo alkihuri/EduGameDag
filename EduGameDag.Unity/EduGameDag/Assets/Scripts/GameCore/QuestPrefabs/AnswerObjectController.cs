@@ -1,4 +1,4 @@
-﻿using GameCore.Qustions;
+﻿using GameCore.Questions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,12 +13,10 @@ namespace GameCore.QuestPrefabs
 
         public float Speed
         {
-            get
-            {
-                return speed;
-            }
+            get { return speed; }
             set => speed = value;
         }
+
         [SerializeField]
         bool isRightAnswer;
 

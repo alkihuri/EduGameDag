@@ -1,42 +1,42 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnvironmentMovement : MonoBehaviour
+namespace AroundEnvironmentBehaivour
 {
-    [SerializeField]
-    private float scrollSpeed;
-
-    [SerializeField]
-    private int packCount =10;
-    
-    [SerializeField]
-    private GameObject[] envPacks;
-    
-    private void Start()
+    public class EnvironmentMovement : MonoBehaviour
     {
-        float counter = 0;
-        for (int i = 0; i < packCount; i++)
+        [SerializeField]
+        private float scrollSpeed;
+
+        [SerializeField]
+        private int packCount =10;
+    
+        [SerializeField]
+        private GameObject[] envPacks;
+    
+        private void Start()
         {
-            var envPrefab = Instantiate(envPacks[UnityEngine.Random.Range(0, envPacks.Length)],
-                new Vector3(-11,0,counter),Quaternion.identity);
-            envPrefab.transform.parent = this.transform;
-            counter += 21f;
+            float counter = 0;
+            for (int i = 0; i < packCount; i++)
+            {
+                var envPrefab = Instantiate(envPacks[UnityEngine.Random.Range(0, envPacks.Length)],
+                    new Vector3(-11,0,counter),Quaternion.identity);
+                envPrefab.transform.parent = this.transform;
+                counter += 21f;
+            }
+            counter = 0f;
+            for (int i = 0; i < packCount; i++)
+            {
+                var envPrefab = Instantiate(envPacks[UnityEngine.Random.Range(0, envPacks.Length)],
+                    new Vector3(17,0,counter),Quaternion.identity);
+                envPrefab.transform.parent = this.transform;
+                counter += 21f;
+            }
         }
-        counter = 0f;
-        for (int i = 0; i < packCount; i++)
-        {
-            var envPrefab = Instantiate(envPacks[UnityEngine.Random.Range(0, envPacks.Length)],
-                new Vector3(17,0,counter),Quaternion.identity);
-            envPrefab.transform.parent = this.transform;
-            counter += 21f;
-        }   
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        transform.position -= new Vector3(0, 0, scrollSpeed * Time.deltaTime/10);
+        // Update is called once per frame
+        void Update()
+        {
+            transform.position -= new Vector3(0, 0, scrollSpeed * Time.deltaTime/10);
+        }
     }
 }

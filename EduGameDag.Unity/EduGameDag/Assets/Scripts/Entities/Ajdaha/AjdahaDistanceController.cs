@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using GameCore;
-using GameCore.Qustions;
+using GameCore.Questions;
 using UnityEngine;
 
 namespace Entities.Ajdaha

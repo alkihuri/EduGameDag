@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using GameCore.Qustions;
+using GameCore.Questions;
 using UnityEngine;
 
 namespace GameCore
