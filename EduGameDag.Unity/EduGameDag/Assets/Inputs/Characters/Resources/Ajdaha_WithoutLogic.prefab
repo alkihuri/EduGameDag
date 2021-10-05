@@ -89,7 +89,7 @@ MonoBehaviour:
   isAttack: 0
   isRun: 0
   isIdle: 1
-  _animatorOfAjdaha: {fileID: 5569642622211453499}
+  _animatorOfAjdaha: {fileID: 0}
 --- !u!54 &6441255302212153277
 Rigidbody:
   m_ObjectHideFlags: 0
