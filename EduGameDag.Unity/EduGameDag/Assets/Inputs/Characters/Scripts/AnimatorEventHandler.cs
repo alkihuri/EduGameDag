@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Inputs.Characters.Scripts;
 using UnityEngine;
 
 public class AnimatorEventHandler : MonoBehaviour

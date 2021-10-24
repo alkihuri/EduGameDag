@@ -38,8 +38,8 @@ public class QuestionCreater : MonoBehaviour
         QuestPack qp = new QuestPack();
         Quest quest = new Quest();
         quest.question = "Как дела?";
-        quest.right_answer = 1.ToString(); // ебать это что
-        quest.wrong_answers = new string [3] { 2.ToString(), 3.ToString(), 4.ToString()}; // азазаз бычья тема
+        quest.right_answer = 1.ToString();
+        quest.wrong_answers = new string [3] { 2.ToString(), 3.ToString(), 4.ToString() };
         qp.tourName = "Предмет #" + Random.Range(1111, 9999); // data.Split(';')[0];
         qp.quests = new Quest[1] { quest };
         List<QuestPack> questPackList = new List<QuestPack>();

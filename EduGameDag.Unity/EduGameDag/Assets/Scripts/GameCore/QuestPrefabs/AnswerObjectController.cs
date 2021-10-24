@@ -1,4 +1,5 @@
 ﻿using GameCore.Questions;
+using Inputs.Characters.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,14 @@ namespace GameCore.QuestPrefabs
         Color right, wrong;
 
         private float speed;
+
+        private Transform player
+        {
+            get
+            {
+                return SaidController.instance.transform;
+            }
+        }
 
         public float Speed
         {
@@ -48,7 +57,17 @@ namespace GameCore.QuestPrefabs
 
         private void Update()
         {
-            transform.position -= new Vector3(0, 0, 0.1f);
+            if (Vector3.Distance(transform.position, new Vector3(transform.position.x, transform.position.y,
+                player.position.z)) < 10f)
+            {
+                speed = 0.5f;
+            }
+            else
+            {
+                speed = 1f;
+            }
+
+            transform.position -= new Vector3(0, 0, 0.1f) * speed;
         }
 
         private void OnTriggerEnter(Collider other)
