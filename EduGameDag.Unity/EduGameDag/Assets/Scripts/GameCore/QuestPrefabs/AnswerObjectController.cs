@@ -46,6 +46,7 @@ namespace GameCore.QuestPrefabs
             GetComponentInChildren<Text>().text = label;
             isRightAnswer = true;
             SetColor(right);
+            PlayerPrefs.SetString("CURRENT_AUDIO_KEY", label);
         }
 
         public void SetWrong(string label)
