@@ -3,59 +3,79 @@
   [
     {
       "questCount": 4,
-      "tourName": "Математика", 
+      "tourName": "Буквы", 
       "quests": [
         {
-          "question": "Сколько сторон у 4-х угольника?",
-          "wrong_answers": [ "1", "2", "4" ],
-          "right_answer": "3"
+          "question": "Найди букву А!",
+          "wrong_answers": [ "Б", "К", "Ч" ],
+          "right_answer": "А"
         },
         {
-          "question": "Могут ли паралельные линии пересечься2?",
-          "wrong_answers": [ "Когда как", "2", "3" ],
-          "right_answer": "Нет"
+          "question": "Найди букву О!",
+          "wrong_answers": [ "А", "И", "А" ],
+          "right_answer": "О"
         },
         {
-          "question": "10 + х = 12. Чему равен X?",
-          "wrong_answers": [ "1", "4", "3" ],
-          "right_answer": "2"
+          "question": "Найди букву С!",
+          "wrong_answers": [ "П", "В", "К" ],
+          "right_answer": "С"
         },
         {
-          "question": "Вопрос 1-4?",
-          "wrong_answers": [ "1", "2", "3" ],
-          "right_answer": "4"
+          "question": "Найди букву М!",
+          "wrong_answers": [ "В", "Ы", "В" ],
+          "right_answer": "М"
         }
       ]
     },
     {
-      "questCount": 2,
-      "tourName": "История",
+      "questCount": 4,
+      "tourName": "Слоги",
       "quests": [
         {
-          "question": "Чё покайфу 2-1?",
-          "wrong_answers": [ "1", "2", "4" ],
-          "right_answer": "3"
+          "question": "Найди слог МА?",
+          "wrong_answers": [ "АВ", "ИМ", "КА" ],
+          "right_answer": "МА"
         },
         {
-          "question": "Чё покайфу 2-2?",
-          "wrong_answers": [ "1", "2", "3" ],
-          "right_answer": "4"
+          "question": "Найди слог МО?",
+          "wrong_answers": [ "АВ", "ИМ", "КА" ],
+          "right_answer": "МО"
+        },
+        {
+          "question": "Найди слог СА?",
+          "wrong_answers": [ "АВ", "ИМ", "КА" ],
+          "right_answer": "СА"
+        },
+        {
+          "question": "Найди слог СО?",
+          "wrong_answers": [ "АВ", "ИМ", "КА" ],
+          "right_answer": "СО"
         }
       ]
     },
     {
-      "questCount": 2,
-      "tourName": "Английский язык",
+      "questCount": 4,
+      "tourName": "Слова",
       "quests": [
         {
-          "question": "Чё покайфу 3-1?",
-          "wrong_answers": [ "1", "2", "4" ],
-          "right_answer": "3"
+          "question": "Найди слово Ма-ма?",
+          "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
+          "right_answer": "МА-МА"
         },
         {
-          "question": "Чё покайфу 3-2",
-          "wrong_answers": [ "1", "2", "3" ],
-          "right_answer": "4"
+          "question": "Найди слово Па-Па?",
+          "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
+          "right_answer": "ПА-ПА"
+        },
+        {
+          "question": "Найди слово Мост",
+          "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
+          "right_answer": "МО-СТ"
+        },
+        {
+          "question": "Найди слово Куст?",
+          "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
+          "right_answer": "КУ-СТ"
         }
       ]
     }
