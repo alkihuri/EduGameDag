@@ -32,22 +32,22 @@
       "tourName": "Слоги",
       "quests": [
         {
-          "question": "Найди слог МА?",
+          "question": "Найди слог МА!",
           "wrong_answers": [ "АВ", "ИМ", "КА" ],
           "right_answer": "МА"
         },
         {
-          "question": "Найди слог МО?",
+          "question": "Найди слог МО!",
           "wrong_answers": [ "АВ", "ИМ", "КА" ],
           "right_answer": "МО"
         },
         {
-          "question": "Найди слог СА?",
+          "question": "Найди слог СА!",
           "wrong_answers": [ "АВ", "ИМ", "КА" ],
           "right_answer": "СА"
         },
         {
-          "question": "Найди слог СО?",
+          "question": "Найди слог СО!",
           "wrong_answers": [ "АВ", "ИМ", "КА" ],
           "right_answer": "СО"
         }
@@ -58,22 +58,22 @@
       "tourName": "Слова",
       "quests": [
         {
-          "question": "Найди слово Ма-ма?",
+          "question": "Найди слово Мама!",
           "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
           "right_answer": "МА-МА"
         },
         {
-          "question": "Найди слово Па-Па?",
+          "question": "Найди слово Папа!",
           "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
           "right_answer": "ПА-ПА"
         },
         {
-          "question": "Найди слово Мост",
+          "question": "Найди слово Мост!",
           "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
           "right_answer": "МО-СТ"
         },
         {
-          "question": "Найди слово Куст?",
+          "question": "Найди слово Куст!",
           "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
           "right_answer": "КУ-СТ"
         }
