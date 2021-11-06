@@ -125,7 +125,7 @@ namespace GameCore.Questions
         // after questCounted
         private void LoadNewSubject()
         {
-            currentQuest = -1;
+            currentQuest = 0;
             InitializeQuest(); 
             RightAnswersListInnit();
             OnLoadNewSubject?.Invoke();
@@ -156,11 +156,8 @@ namespace GameCore.Questions
         {
             ClearObjects();
             if (listOfRightAnswers.Count>0)
-            {
-                currentQuest++;
+            { 
                 GenerateCubes();
-                if (currentQuest > 4)
-                    currentQuest = 0;
             }
             else
             {
@@ -173,33 +170,55 @@ namespace GameCore.Questions
             // }
         }
 
-        private void GenerateCubes() // кихури на исполнениях если покайу
+        bool CanGenerateDummyFunction(string key)
         {
+            if (listOfRightAnswers.Contains(key))
+                return true;
+            else
+                return false;
+        }
 
+
+        private void GenerateCubes() // кихури на исполнениях если покайу
+        { 
             try
             {
-
-
-                _text.text = questLoader.QuestionPack.quests[currentQuest].question;
-                for (var i = 0; i < 3; i++)
+                var checkWord = questLoader.QuestionPack.quests[currentQuest].right_answer;
+                if (!CanGenerateDummyFunction(checkWord))
                 {
-                    var newOne = Instantiate(cube, listOfQuestionToSpawm[i].position, Quaternion.identity);
-                    var answerText = questLoader.QuestionPack.quests[currentQuest].wrong_answers[i].ToString();
-                    objects[i] = newOne;
-                    newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
+                    Debug.Log(checkWord + " уже изучен");
+                    currentQuest++;
+                    GenerateCubes();
                 }
-
-                var rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
-                objects[3] = rObj;
-                rObj.GetComponent<AnswerObjectController>()
-                    .SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
-                ShuffleAnswers(ref objects);
+                else
+                {
+                    OldButGoldMethodTogenerate();
+                }
             }
             catch
             {
                 currentQuest = 0;
-                GenerateCubes(); // smelly piece of shit
+                GenerateCubes();
             }
+        }
+
+        private void OldButGoldMethodTogenerate() /// как в солиде короче, нельзя меня старое говно
+        {
+            _text.text = questLoader.QuestionPack.quests[currentQuest].question;
+            for (var i = 0; i < 3; i++)
+            {
+                var newOne = Instantiate(cube, listOfQuestionToSpawm[i].position, Quaternion.identity);
+                var answerText = questLoader.QuestionPack.quests[currentQuest].wrong_answers[i].ToString();
+                objects[i] = newOne;
+                newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
+            }
+
+            var rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
+            objects[3] = rObj;
+            rObj.GetComponent<AnswerObjectController>()
+                .SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
+            ShuffleAnswers(ref objects);
+            currentQuest++;
         }
 
         private static void ShuffleAnswers(ref GameObject[] array)
