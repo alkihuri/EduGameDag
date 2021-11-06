@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using GameCore.QuestPrefabs;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,14 +17,18 @@ namespace GameCore.Questions
         private Text _text;
 
         [SerializeField]
-        private List<Transform> listOfQuestionToSpawm;
+        public  List<Transform> listOfQuestionToSpawm;
 
         [SerializeField]
         private GameObject cube;
 
         private float gameSpeed;
 
+        Quest[] _tempArrayOfQuests; 
+
         public QuestLoader questLoader;
+        [SerializeField]
+        List<string> listOfRightAnswers;  // here we have to store короче все бкувы\ответы\слоги\слова которые нужно отгадать, с каждым успешным ответом будем миносовать
 
         public float GameSpeed
         {
@@ -97,18 +102,32 @@ namespace GameCore.Questions
 
         private void Start()
         {
-            OnLoadNewSubject += GenerateNewQuestLevel;
+            OnLoadNewSubject += GenerateNewQuestLevel; 
             GameStateController.instance.GameStarted += CalculateQuestions;
             OnQuestCounted += LoadNewSubject;
+            _tempArrayOfQuests = questLoader.QuestionPack.quests;
             // questLoader.OnJsonLoaded += CalculateQuestions;
         }
 
+        private void RightAnswersListInnit()
+        {
+            listOfRightAnswers = new List<string>();
+            foreach (Quest line in questLoader.QuestionPack.quests)
+            {
+                listOfRightAnswers.Add(line.right_answer);
+            }
+        }
+        public  void RemoveKebab(string key) // да я просто удаляю из листа
+        {
+            listOfRightAnswers.Remove(key);
+        }
 
         // after questCounted
         private void LoadNewSubject()
         {
             currentQuest = -1;
-            InitializeQuest();
+            InitializeQuest(); 
+            RightAnswersListInnit();
             OnLoadNewSubject?.Invoke();
         }
 
@@ -136,10 +155,12 @@ namespace GameCore.Questions
         public void GenerateNewQuestLevel()
         {
             ClearObjects();
-            if (currentQuest < questCountInPack - 1)
+            if (listOfRightAnswers.Count>0)
             {
                 currentQuest++;
                 GenerateCubes();
+                if (currentQuest > 4)
+                    currentQuest = 0;
             }
             else
             {
@@ -152,22 +173,33 @@ namespace GameCore.Questions
             // }
         }
 
-        private void GenerateCubes()
+        private void GenerateCubes() // кихури на исполнениях если покайу
         {
-            _text.text = questLoader.QuestionPack.quests[currentQuest].question;
-            for (var i = 0; i < 3; i++)
-            {
-                var newOne = Instantiate(cube, listOfQuestionToSpawm[i].position, Quaternion.identity);
-                var answerText = questLoader.QuestionPack.quests[currentQuest].wrong_answers[i].ToString();
-                objects[i] = newOne;
-                newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
-            }
 
-            var rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
-            objects[3] = rObj;
-            rObj.GetComponent<AnswerObjectController>()
-                .SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
-            ShuffleAnswers(ref objects);
+            try
+            {
+
+
+                _text.text = questLoader.QuestionPack.quests[currentQuest].question;
+                for (var i = 0; i < 3; i++)
+                {
+                    var newOne = Instantiate(cube, listOfQuestionToSpawm[i].position, Quaternion.identity);
+                    var answerText = questLoader.QuestionPack.quests[currentQuest].wrong_answers[i].ToString();
+                    objects[i] = newOne;
+                    newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
+                }
+
+                var rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
+                objects[3] = rObj;
+                rObj.GetComponent<AnswerObjectController>()
+                    .SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
+                ShuffleAnswers(ref objects);
+            }
+            catch
+            {
+                currentQuest = 0;
+                GenerateCubes(); // smelly piece of shit
+            }
         }
 
         private static void ShuffleAnswers(ref GameObject[] array)

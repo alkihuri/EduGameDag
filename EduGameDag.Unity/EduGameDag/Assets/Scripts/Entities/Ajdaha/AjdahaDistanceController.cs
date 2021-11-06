@@ -80,7 +80,7 @@ namespace Entities.Ajdaha
             }
             else if ((previousDistance-needDistance) < 0)
             {
-                increaseCount = -(100f / QuestionGenerator.Instance.QuestionCount / 100f);
+                //increaseCount = -(100f / QuestionGenerator.Instance.QuestionCount / 100f);
             }
             else
             {

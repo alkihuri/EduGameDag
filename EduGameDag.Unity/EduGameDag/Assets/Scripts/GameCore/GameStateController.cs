@@ -10,6 +10,7 @@ namespace GameCore
         public event Action GameEndEvent;
 
         public event Action GameStarted;
+        [SerializeField] QuestionGenerator _questionGenerator;
 
         private void Awake()
         {
@@ -19,6 +20,7 @@ namespace GameCore
 
         private void Start()
         {
+            _questionGenerator = GameObject.FindObjectOfType<QuestionGenerator>();
             GameEndEvent += CountScores;
         }
 
@@ -35,7 +37,8 @@ namespace GameCore
         private void CountScores()
         {
             Debug.Log("Counted");
-            var difference = QuestionGenerator.Instance.QuestionCount - ScoreController.instance.Score;
+
+            var difference = _questionGenerator.listOfQuestionToSpawm.Count;//QuestionGenerator.Instance.QuestionCount - ScoreController.instance.Score;
             if (difference == 0)
             {
                 Debug.Log("win ");
@@ -54,6 +57,7 @@ namespace GameCore
                 SceneLoader.SceneLoader.instance.SetLoseScene();
                 //TODO: LOSE
             }
+             
         }
     }
 }

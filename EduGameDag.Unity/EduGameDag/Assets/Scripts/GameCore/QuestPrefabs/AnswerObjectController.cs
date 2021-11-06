@@ -11,6 +11,7 @@ namespace GameCore.QuestPrefabs
         Color right, wrong;
 
         private float speed;
+        private string _label;
 
         private Transform player
         {
@@ -43,6 +44,7 @@ namespace GameCore.QuestPrefabs
 
         public void SetRight(string label)
         {
+            _label = label;
             GetComponentInChildren<Text>().text = label;
             isRightAnswer = true;
             SetColor(right);
@@ -51,6 +53,7 @@ namespace GameCore.QuestPrefabs
 
         public void SetWrong(string label)
         {
+            _label = label;
             GetComponentInChildren<Text>().text = label;
             isRightAnswer = false;
             SetColor(wrong);
@@ -75,11 +78,22 @@ namespace GameCore.QuestPrefabs
         {
             if (!other.gameObject.GetComponent<SaidController>()) return;
             if (isRightAnswer)
+            {
+                RemoveKebabInvoker(_label);
                 ScoreController.instance.Score++;
+            }
             else
                 ScoreController.instance.Score--;
             QuestionGenerator.Instance.GenerateNewQuestLevel();
             Destroy(this.gameObject);
         }
+        // hardcode
+        [SerializeField] QuestionGenerator _questionGenerator;
+        public void RemoveKebabInvoker(string key)
+        {
+            _questionGenerator = GameObject.FindObjectOfType<QuestionGenerator>();
+            _questionGenerator.RemoveKebab(key);
+        }
+        
     }
 }
