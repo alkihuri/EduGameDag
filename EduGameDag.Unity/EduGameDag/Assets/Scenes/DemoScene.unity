@@ -1837,7 +1837,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761279626}
-  m_LocalRotation: {x: -0.110671416, y: -0.7693325, z: -0.13873671, w: 0.6137031}
+  m_LocalRotation: {x: -0.11067142, y: -0.7693325, z: -0.13873671, w: 0.6137031}
   m_LocalPosition: {x: 1.4015054, y: 0.3356316, z: 0.2982969}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -9342,5 +9342,12 @@ MonoBehaviour:
   scrollSpeed: 40
   packCount: 10
   envPacks:
-  - {fileID: 5892018390629247876, guid: 37c6bf2dbbbae1d41a11024328bfc404, type: 3}
-  - {fileID: 5892018390629247876, guid: 619f308720107b3419f1a59c4d67558b, type: 3}
+  - {fileID: 6196933170002779976, guid: 676ef6d7ee8c70a4394034b643a760bf, type: 3}
+  - {fileID: 1464663484730118066, guid: c495581805b428d4ead8c8c188187be2, type: 3}
+  - {fileID: 3283423077194532214, guid: 7847af5155ca1fc4cbcf0607fdecc703, type: 3}
+  - {fileID: 3056738512734900052, guid: 68940bd4da1699548b58d258cd30778d, type: 3}
+  - {fileID: 6904463090705532483, guid: fe82664796c2b6747b9d0ba388efcc0c, type: 3}
+  - {fileID: 954682321978947793, guid: 786f562c30c45294ba5c3d6364961ac9, type: 3}
+  - {fileID: 7900424980626337221, guid: 523e8d2e7e0cd1f4ba93f401d50399c8, type: 3}
+  - {fileID: 7961990195227506425, guid: 4e1e9e6bc1b126b458638f74ea8bb21c, type: 3}
+  - {fileID: 5801190585385467747, guid: b30e7f985a82e144f8a402c8df749368, type: 3}
