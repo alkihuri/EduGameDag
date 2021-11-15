@@ -19,7 +19,7 @@ namespace AroundEnvironmentBehaivour
             for (int i = 0; i < packCount; i++)
             {
                 var envPrefab = Instantiate(envPacks[UnityEngine.Random.Range(0, envPacks.Length)],
-                    new Vector3(-11,0,counter),Quaternion.identity);
+                    new Vector3(-11,0,counter), Quaternion.Euler(-90, 0, 0));
                 envPrefab.transform.parent = this.transform;
                 counter += 21f;
             }
@@ -27,7 +27,7 @@ namespace AroundEnvironmentBehaivour
             for (int i = 0; i < packCount; i++)
             {
                 var envPrefab = Instantiate(envPacks[UnityEngine.Random.Range(0, envPacks.Length)],
-                    new Vector3(17,0,counter),Quaternion.identity);
+                    new Vector3(17,0,counter),Quaternion.Euler(-90,0,0));
                 envPrefab.transform.parent = this.transform;
                 counter += 21f;
             }
