@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
 using Entities.Ajdaha;
+using TMPro;
 
 public class LoadUIController : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class LoadUIController : MonoBehaviour
     private QuestLoader loader;
 
     [SerializeField]
-    private Dropdown lessonDropdown;
+    private TMP_Dropdown lessonDropdown;
 
 
     private int currentSelectedValue;

@@ -5,6 +5,7 @@ using System.Linq;
 using GameCore.QuestPrefabs;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro; // просто что за неочевидное название баляд тупые животные
 using Random = UnityEngine.Random;
 
 namespace GameCore.Questions
@@ -14,7 +15,7 @@ namespace GameCore.Questions
         public static QuestionGenerator Instance;
 
         [SerializeField]
-        private Text _text;
+        private TextMeshProUGUI _text;
 
         [SerializeField]
         public  List<Transform> listOfQuestionToSpawm;
