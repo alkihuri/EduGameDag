@@ -2,6 +2,8 @@
 using Inputs.Characters.Scripts;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
+using TMPro;
 
 namespace GameCore.QuestPrefabs
 {
@@ -12,7 +14,9 @@ namespace GameCore.QuestPrefabs
 
         private float speed;
         private string _label;
-
+        //тупо собаки придумали какуюто дичь с текстмешпрогуй, а есть просто текстмешпро и хрен разбери сигаман
+        [SerializeField] TextMeshProUGUI _textLabel; 
+        // ана бозарган азиз ящлаган
         private Transform player
         {
             get
@@ -45,7 +49,7 @@ namespace GameCore.QuestPrefabs
         public void SetRight(string label)
         {
             _label = label;
-            GetComponentInChildren<Text>().text = label;
+            _textLabel.text = label;
             isRightAnswer = true;
             SetColor(right);
             PlayerPrefs.SetString("CURRENT_AUDIO_KEY", label);
@@ -54,7 +58,7 @@ namespace GameCore.QuestPrefabs
         public void SetWrong(string label)
         {
             _label = label;
-            GetComponentInChildren<Text>().text = label;
+            _textLabel.text = label;
             isRightAnswer = false;
             SetColor(wrong);
         }
