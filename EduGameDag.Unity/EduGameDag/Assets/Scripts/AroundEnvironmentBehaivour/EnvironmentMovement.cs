@@ -22,7 +22,7 @@ namespace AroundEnvironmentBehaivour
             {
                 var envPrefab = Instantiate(envPacks[UnityEngine.Random.Range(0, envPacks.Length)]);
                 envPrefab.transform.parent = this.transform;
-                envPrefab.transform.localPosition = new Vector3(-11, 0, counter);
+                envPrefab.transform.localPosition = new Vector3(-11, 15/2, counter);
                 envPrefab.transform.rotation = Quaternion.Euler(-90,0,0);
                 counter += 21f;
             }
@@ -32,7 +32,7 @@ namespace AroundEnvironmentBehaivour
             {
                 var envPrefab = Instantiate(envPacks[UnityEngine.Random.Range(0, envPacks.Length)]);
                 envPrefab.transform.parent = this.transform;
-                envPrefab.transform.localPosition = new Vector3(17, 0, counter);
+                envPrefab.transform.localPosition = new Vector3(17, 15 / 2, counter);
                 envPrefab.transform.rotation = Quaternion.Euler(-90,0,0);
                 counter += 21f;
             }
