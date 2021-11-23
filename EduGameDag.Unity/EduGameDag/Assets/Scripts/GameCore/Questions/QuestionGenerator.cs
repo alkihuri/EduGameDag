@@ -96,7 +96,7 @@ namespace GameCore.Questions
             {
                 foreach (var obj in objects)
                 {
-                    Destroy(obj, 3);
+                    Destroy(obj, 5);
                 }
             }
         }
