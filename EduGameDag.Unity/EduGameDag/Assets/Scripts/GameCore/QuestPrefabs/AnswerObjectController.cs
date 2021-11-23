@@ -41,9 +41,9 @@ namespace GameCore.QuestPrefabs
             speed = QuestionGenerator.Instance.GameSpeed;
         }
 
-        void SetColor(Material  colorToSet)
+        void SetColor(Material  materialToSet)
         {
-            
+            _objectToColor.GetComponent<Renderer>().material = materialToSet;
         }
 
         public void SetRight(string label)

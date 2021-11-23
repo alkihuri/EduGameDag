@@ -16,12 +16,13 @@ public class BaloonController : MonoBehaviour
     void Update()
     {
         _forceValue = UnityEngine.Random.Range(-1, 4);
-        GetComponent<Rigidbody>().AddForce(transform.up * _forceValue);
+        GetComponent<Rigidbody>().AddForce(transform.up * _forceValue + transform.right* UnityEngine.Random.Range(-1,1));
     }
 
     public  void BreakSpring()
     {
         Destroy(GetComponent<SpringJoint>());
+        GetComponent<Rigidbody>().AddForce(transform.up * 2, ForceMode.Impulse); 
         Destroy(gameObject, 5);
     }
 }
