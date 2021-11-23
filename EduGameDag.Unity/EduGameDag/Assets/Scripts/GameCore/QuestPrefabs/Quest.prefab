@@ -3883,7 +3883,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0.49999672, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 3.3599966, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.9999967, z: 0}
   serializedVersion: 2
   m_Spring: 10
   m_Damper: 0.5
@@ -4210,10 +4210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e90564d3648c140b62f697502d35a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  right: {r: 0.57169604, g: 1, b: 0, a: 0}
-  wrong: {r: 1, g: 0, b: 0, a: 0}
+  right: {fileID: 2100000, guid: 97f0e5d1a655b3d4cbbfd289cbd1ef24, type: 2}
+  wrong: {fileID: 2100000, guid: 303cd313bf91c834682eb78f05b8b830, type: 2}
   _baloon: {fileID: 4980802690595856787}
   _textLabel: {fileID: 2675092218671418406}
+  _objectToColor: {fileID: 4980802690595856787}
   isRightAnswer: 0
   _questionGenerator: {fileID: 0}
 --- !u!65 &5266309150410326400

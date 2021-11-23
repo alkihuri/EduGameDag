@@ -10,12 +10,14 @@ namespace GameCore.QuestPrefabs
     public class AnswerObjectController : MonoBehaviour
     {
         [SerializeField]
-        Color right, wrong;
+        Material right, wrong;
         [SerializeField] GameObject _baloon;
         private float speed;
         private string _label;
         //тупо собаки придумали какуюто дичь с текстмешпрогуй, а есть просто текстмешпро и хрен разбери сигаман
-        [SerializeField] TextMeshProUGUI _textLabel; 
+        [SerializeField] TextMeshProUGUI _textLabel;
+
+        public GameObject _objectToColor;
         // ана бозарган азиз ящлаган
         private Transform player
         {
@@ -35,15 +37,13 @@ namespace GameCore.QuestPrefabs
         bool isRightAnswer;
 
         void Start()
-        {
-            right = Color.green;
-            wrong = Color.red;
+        { 
             speed = QuestionGenerator.Instance.GameSpeed;
         }
 
-        void SetColor(Color colorToSet)
+        void SetColor(Material  colorToSet)
         {
-            GetComponentInChildren<Renderer>().material.color = colorToSet;
+            
         }
 
         public void SetRight(string label)
