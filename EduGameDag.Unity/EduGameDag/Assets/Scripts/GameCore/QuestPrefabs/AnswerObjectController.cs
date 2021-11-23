@@ -11,7 +11,7 @@ namespace GameCore.QuestPrefabs
     {
         [SerializeField]
         Color right, wrong;
-
+        [SerializeField] GameObject _baloon;
         private float speed;
         private string _label;
         //тупо собаки придумали какуюто дичь с текстмешпрогуй, а есть просто текстмешпро и хрен разбери сигаман
@@ -78,18 +78,28 @@ namespace GameCore.QuestPrefabs
             transform.position -= new Vector3(0, 0, 0.1f) * speed;
         }
 
+        public void RealeseBaloon()
+        {
+            _baloon.transform.SetParent(null);
+            _baloon.GetComponent<BaloonController>().BreakSpring(); 
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            if (!other.gameObject.GetComponent<SaidController>()) return;
+           
+            if (!other.gameObject.GetComponent<SaidController>()) 
+                return;
             if (isRightAnswer)
             {
+             
                 RemoveKebabInvoker(_label);
                 ScoreController.instance.Score++;
             }
             else
                 ScoreController.instance.Score--;
             QuestionGenerator.Instance.GenerateNewQuestLevel();
-            Destroy(this.gameObject);
+            RealeseBaloon();
+            Destroy(gameObject);
         }
         // hardcode
         [SerializeField] QuestionGenerator _questionGenerator;
@@ -98,6 +108,8 @@ namespace GameCore.QuestPrefabs
             _questionGenerator = GameObject.FindObjectOfType<QuestionGenerator>();
             _questionGenerator.RemoveKebab(key);
         }
-        
+ 
+
+
     }
 }

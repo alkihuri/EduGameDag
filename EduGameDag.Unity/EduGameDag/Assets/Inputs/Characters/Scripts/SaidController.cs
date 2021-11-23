@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameCore.QuestPrefabs;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -80,6 +81,12 @@ namespace Inputs.Characters.Scripts
         public void OnRightMove()
         {
             OnMove(1);
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if(other.gameObject.GetComponent<AnswerObjectController>())
+                OnJump?.Invoke();
         }
     }
 }
