@@ -9,6 +9,8 @@ namespace GameCore.QuestPrefabs
 {
     public class AnswerObjectController : MonoBehaviour
     {
+        private const float _slowSpeed = 0.2f;
+        private const float _fastSpeed = 5f;
         [SerializeField]
         Material right, wrong;
         [SerializeField] GameObject _baloon;
@@ -65,16 +67,8 @@ namespace GameCore.QuestPrefabs
 
         private void Update()
         {
-            if (Vector3.Distance(transform.position, new Vector3(transform.position.x, transform.position.y,
-                player.position.z)) < 10f)
-            {
-                speed = 0.5f;
-            }
-            else
-            {
-                speed = 1f;
-            }
-
+            var distance = Vector3.Distance(transform.position, new Vector3(transform.position.x, transform.position.y, player.position.z));
+            speed = distance < 10 ? _slowSpeed : _fastSpeed; // гьай гьай баляд рефакторинг 
             transform.position -= new Vector3(0, 0, 0.1f) * speed;
         }
 
