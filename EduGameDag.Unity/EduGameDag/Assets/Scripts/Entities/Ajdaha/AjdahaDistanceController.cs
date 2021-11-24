@@ -72,7 +72,7 @@ namespace Entities.Ajdaha
                       + "[" + Time.time.ToString("0.0") + "] ") ;
             if(QuestionGenerator.Instance.QuestionCount == 0)
                 return;
-            needDistance = (QuestionGenerator.Instance.QuestionCount - ScoreController.instance.Score);
+            needDistance = (QuestionGenerator.Instance.QuestionCount - ScoreController.instance.Score) * 5-2;
             var increaseCount = 0f;
             if ((previousDistance-needDistance) > 0)
             {
