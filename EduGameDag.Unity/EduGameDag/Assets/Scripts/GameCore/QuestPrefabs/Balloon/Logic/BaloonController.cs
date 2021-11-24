@@ -6,12 +6,7 @@ using UnityEngine;
 public class BaloonController : MonoBehaviour
 {
     [SerializeField, Range(-2, 4)] float _forceValue;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    // Start is called before the first frame update  
     // Update is called once per frame
     void Update()
     {
