@@ -38,7 +38,7 @@ public class LoadUIController : MonoBehaviour
     public void Sumbit() // я этот метод чисто через чтарый файл нашел ошалеть...
     {
         loader.QuestionGenerator.CurrentQuestPack = currentSelectedValue;
-        GetComponent<RectTransform>().DOAnchorPosX(-1080, 1f);
+        GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, 1f);
         GameStateController.instance.StartGame();
     }
 
