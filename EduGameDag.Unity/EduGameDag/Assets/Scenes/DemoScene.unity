@@ -685,7 +685,7 @@ PrefabInstance:
     - target: {fileID: 5569642622266200616, guid: 6a3b2ebcfd3f5aa4cb2434185df1d3a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.54
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 5569642622266200616, guid: 6a3b2ebcfd3f5aa4cb2434185df1d3a0,
         type: 3}
@@ -10029,6 +10029,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: FogEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 81.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
+        type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 532.7
       objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907631, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
