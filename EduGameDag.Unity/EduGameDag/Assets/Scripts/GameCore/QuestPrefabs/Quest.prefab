@@ -30,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4980802690595856787}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.51, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 1224207518564264454}
   m_Father: {fileID: 9043936542420280336}
@@ -48,7 +48,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.69
+  m_Radius: 1.1
   m_Center: {x: 0, y: 2.23, z: 0}
 --- !u!137 &5736717361507211907
 SkinnedMeshRenderer:
@@ -99,8 +99,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 0}
   m_AABB:
-    m_Center: {x: 0.009757996, y: -2.0874252, z: -0.004370451}
-    m_Extent: {x: 1.6371145, y: 5.506853, z: 1.6282539}
+    m_Center: {x: -0.0003566742, y: -2.716153, z: 0.00018620491}
+    m_Extent: {x: 1.2084352, y: 6.168378, z: 1.2099214}
   m_DirtyAABB: 0
 --- !u!183 &7895672705381946447
 Cloth:
@@ -3883,7 +3883,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0.49999672, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.9999967, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.5899974, z: 0}
   serializedVersion: 2
   m_Spring: 15
   m_Damper: 0.5
@@ -4368,7 +4368,7 @@ Transform:
   m_GameObject: {fileID: 9043936542420280340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 2266045539554612527}
   - {fileID: 6264721582096710938}
