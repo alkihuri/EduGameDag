@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.45141798, g: 0.5005786, b: 0.5705779, a: 1}
+  m_IndirectSpecularColor: {r: 0.45141822, g: 0.50057906, b: 0.57057834, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -771,17 +771,17 @@ PrefabInstance:
     - target: {fileID: 3305833443882260311, guid: c10e70ef0d760e541bf8dbe8fdf13ccc,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3305833443882260311, guid: c10e70ef0d760e541bf8dbe8fdf13ccc,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3305833443882260311, guid: c10e70ef0d760e541bf8dbe8fdf13ccc,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3305833443882260311, guid: c10e70ef0d760e541bf8dbe8fdf13ccc,
         type: 3}
@@ -791,12 +791,12 @@ PrefabInstance:
     - target: {fileID: 3305833443882260311, guid: c10e70ef0d760e541bf8dbe8fdf13ccc,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -40
+      value: 1040
       objectReference: {fileID: 0}
     - target: {fileID: 3305833443882260311, guid: c10e70ef0d760e541bf8dbe8fdf13ccc,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -2075
+      value: -155
       objectReference: {fileID: 0}
     - target: {fileID: 3305833443882260311, guid: c10e70ef0d760e541bf8dbe8fdf13ccc,
         type: 3}
@@ -841,7 +841,7 @@ PrefabInstance:
     - target: {fileID: 3305833443882260311, guid: c10e70ef0d760e541bf8dbe8fdf13ccc,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1037.5
+      value: 205
       objectReference: {fileID: 0}
     - target: {fileID: 3305833443882260311, guid: c10e70ef0d760e541bf8dbe8fdf13ccc,
         type: 3}
@@ -1247,7 +1247,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057269714}
-  m_LocalRotation: {x: 0.1273679, y: -0.273895, z: 0.03662186, w: 0.9525848}
+  m_LocalRotation: {x: 0.12736791, y: -0.273895, z: 0.036621865, w: 0.9525848}
   m_LocalPosition: {x: 2.4379027, y: 2.3375328, z: -6.4966903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2246,17 +2246,17 @@ PrefabInstance:
     - target: {fileID: 6767418822165434212, guid: bad8f216fc8825f448660c033c7699fe,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6767418822165434212, guid: bad8f216fc8825f448660c033c7699fe,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6767418822165434212, guid: bad8f216fc8825f448660c033c7699fe,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6767418822165434212, guid: bad8f216fc8825f448660c033c7699fe,
         type: 3}
@@ -2266,12 +2266,12 @@ PrefabInstance:
     - target: {fileID: 6767418822165434212, guid: bad8f216fc8825f448660c033c7699fe,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -40
+      value: 1040
       objectReference: {fileID: 0}
     - target: {fileID: 6767418822165434212, guid: bad8f216fc8825f448660c033c7699fe,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: -2075
+      value: -155
       objectReference: {fileID: 0}
     - target: {fileID: 6767418822165434212, guid: bad8f216fc8825f448660c033c7699fe,
         type: 3}
@@ -2316,7 +2316,7 @@ PrefabInstance:
     - target: {fileID: 6767418822165434212, guid: bad8f216fc8825f448660c033c7699fe,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -741
+      value: 330
       objectReference: {fileID: 0}
     - target: {fileID: 6767418822165434212, guid: bad8f216fc8825f448660c033c7699fe,
         type: 3}
