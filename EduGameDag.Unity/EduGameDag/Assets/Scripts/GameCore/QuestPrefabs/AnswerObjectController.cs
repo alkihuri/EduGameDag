@@ -11,15 +11,15 @@ namespace GameCore.QuestPrefabs
     {
         private const float _slowSpeed = 0.2f;
         private const float _fastSpeed = 5f;
+        private const int _distanceToSwitchSpeedMode = 10;
         [SerializeField]
-        Material right, wrong;
+        Material _rightMaterial, _wrongMaterial; 
+        public GameObject _objectToColor;
         [SerializeField] GameObject _baloon;
-        private float speed;
+        private float _speed;
         private string _label;
         //тупо собаки придумали какуюто дичь с текстмешпрогуй, а есть просто текстмешпро и хрен разбери сигаман
-        [SerializeField] TextMeshProUGUI _textLabel;
-
-        public GameObject _objectToColor;
+        [SerializeField] TextMeshProUGUI _textLabel; 
         // ана бозарган азиз ящлаган
         private Transform player
         {
@@ -31,8 +31,8 @@ namespace GameCore.QuestPrefabs
 
         public float Speed
         {
-            get { return speed; }
-            set => speed = value;
+            get { return _speed; }
+            set => _speed = value;
         }
 
         [SerializeField]
@@ -40,7 +40,7 @@ namespace GameCore.QuestPrefabs
 
         void Start()
         { 
-            speed = QuestionGenerator.Instance.GameSpeed;
+            _speed = QuestionGenerator.Instance.GameSpeed;
         }
 
         void SetColor(Material  materialToSet)
@@ -53,7 +53,7 @@ namespace GameCore.QuestPrefabs
             _label = label;
             _textLabel.text = label;
             isRightAnswer = true;
-            SetColor(right);
+            SetColor(_rightMaterial);
             PlayerPrefs.SetString("CURRENT_AUDIO_KEY", label);
         }
 
@@ -62,18 +62,19 @@ namespace GameCore.QuestPrefabs
             _label = label;
             _textLabel.text = label;
             isRightAnswer = false;
-            SetColor(wrong);
+            SetColor(_wrongMaterial);
         }
 
         private void Update()
         {
             var distance = Vector3.Distance(transform.position, new Vector3(transform.position.x, transform.position.y, player.position.z));
-            speed = distance < 10 ? _slowSpeed : _fastSpeed; // гьай гьай баляд рефакторинг 
-            transform.position -= new Vector3(0, 0, 0.1f) * speed;
+            _speed = distance < _distanceToSwitchSpeedMode ? _slowSpeed : _fastSpeed; // гьай гьай баляд рефакторинг 
+            transform.position -= new Vector3(0, 0, 0.1f) * _speed;
         }
 
         public void RealeseBaloon()
         {
+            _speed = _fastSpeed;
             _baloon.transform.SetParent(null);
             _baloon.GetComponent<BaloonController>().BreakSpring(); 
         }
@@ -101,9 +102,6 @@ namespace GameCore.QuestPrefabs
         {
             _questionGenerator = GameObject.FindObjectOfType<QuestionGenerator>();
             _questionGenerator.RemoveKebab(key);
-        }
- 
-
-
+        } 
     }
 }
