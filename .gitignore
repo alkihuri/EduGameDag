@@ -52,7 +52,7 @@ ExportedObj/
 sysinfo.txt
 
 # Builds 
-
+*.apk
 # Crashlytics generated file
 crashlytics-build.properties
 
