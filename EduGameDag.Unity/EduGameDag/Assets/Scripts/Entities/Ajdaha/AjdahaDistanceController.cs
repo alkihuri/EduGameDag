@@ -54,9 +54,7 @@ namespace Entities.Ajdaha
         }
 
         private void Start()
-        {
-            
-            QuestionGenerator.Instance.OnQuestCounted += InitialGame;
+        { QuestionGenerator.Instance.OnQuestCounted += InitialGame;
         }
 
         public void InitialGame()
@@ -89,7 +87,8 @@ namespace Entities.Ajdaha
             // сори за это явление говнокода :(
             distanceValueChanged?.Invoke(increaseCount);
             previousDistance = needDistance;
-            transform.DOMove(new Vector3(listOfRoads[random].position.x, listOfRoads[random].position.y,
+            float putAjdahaNearTheRoad = 0.75f * UnityEngine.Random.Range(-1, 1);
+            transform.DOMove(new Vector3( 2.33f, listOfRoads[random].position.y,
                 playerTransform.position.z + needDistance), 1f);
         }
     }

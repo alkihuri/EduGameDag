@@ -22,7 +22,7 @@ public class BaloonController : MonoBehaviour
     public  void BreakSpring()
     {
         Destroy(GetComponent<SpringJoint>());
-        GetComponent<Rigidbody>().AddForce(transform.up * 2, ForceMode.Impulse); 
+        GetComponent<Rigidbody>().AddForce(transform.up * 3.5f, ForceMode.Impulse); 
         Destroy(gameObject, 5);
     }
 }
