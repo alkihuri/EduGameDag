@@ -16,6 +16,8 @@ public class LoadUIController : MonoBehaviour
     [SerializeField]
     private TMP_Dropdown lessonDropdown;
 
+    [SerializeField] GameObject firstPanel, secondPanel;
+
 
     private int currentSelectedValue;
 
@@ -38,7 +40,11 @@ public class LoadUIController : MonoBehaviour
     public void Sumbit() // я этот метод чисто через чтарый файл нашел ошалеть...
     {
         loader.QuestionGenerator.CurrentQuestPack = currentSelectedValue;
-        GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, 1f);
+        //GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, 1f);
+
+        firstPanel.SetActive(false);
+        secondPanel.SetActive(true);
+
         GameStateController.instance.StartGame();
     }
 
