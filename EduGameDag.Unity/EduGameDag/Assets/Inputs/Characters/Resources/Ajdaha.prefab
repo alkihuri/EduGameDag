@@ -1,24 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!95 &5569642622211453499
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4722641745110945647}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1554d5f858412034d87f062dfebd2b24, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5569642622266200617
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,8 +99,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.5767955, z: 1}
-  m_Center: {x: 0, y: 0.9299361, z: 0}
+  m_Size: {x: 1.8, y: 3.42, z: 4.68}
+  m_Center: {x: 0, y: 1, z: 1.59}
 --- !u!1001 &5569642622211453502
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -202,6 +183,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6699688244939360586, guid: 4b855658e8c5f2941bccad6c5cde5342,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a608ef5d58421e64ea5d1d481140f3ae, type: 2}
     - target: {fileID: -6584113138925964910, guid: 4b855658e8c5f2941bccad6c5cde5342,
         type: 3}
       propertyPath: m_Layer
@@ -272,6 +258,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -935799143427655445, guid: 4b855658e8c5f2941bccad6c5cde5342,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a608ef5d58421e64ea5d1d481140f3ae, type: 2}
     - target: {fileID: -740770535957903457, guid: 4b855658e8c5f2941bccad6c5cde5342,
         type: 3}
       propertyPath: m_Layer
@@ -421,3 +412,22 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5569642622211453502}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &5569642622211453499
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4722641745110945647}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1554d5f858412034d87f062dfebd2b24, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

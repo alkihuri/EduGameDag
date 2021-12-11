@@ -2,7 +2,7 @@
   "tourQuests": 
   [
     {
-      "questCount": 4,
+      "questCount": 9,
       "tourName": "Буквы", 
       "quests": [
         {
@@ -24,6 +24,26 @@
           "question": "Найди букву М!",
           "wrong_answers": [ "В", "Ы", "В" ],
           "right_answer": "М"
+        },
+        {
+          "question": "Найди букву В!",
+          "wrong_answers": [ "В", "Ы", "О" ],
+          "right_answer": "В"
+        },
+        {
+          "question": "Найди букву Н!",
+          "wrong_answers": [ "В", "Ы", "В" ],
+          "right_answer": "Н"
+        },
+        {
+          "question": "Найди букву П!",
+          "wrong_answers": [ "В", "Ы", "В" ],
+          "right_answer": "П"
+        },
+        {
+          "question": "Найди букву К!",
+          "wrong_answers": [ "В", "Ы", "В" ],
+          "right_answer": "К"
         }
       ]
     },
