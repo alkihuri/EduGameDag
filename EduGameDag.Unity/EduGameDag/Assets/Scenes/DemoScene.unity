@@ -8043,10 +8043,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08bb047fe7dc1fd44841ef781ec469e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loader: {fileID: 899376140}
-  lessonDropdown: {fileID: 1451778237}
-  firstPanel: {fileID: 1653861583}
-  secondPanel: {fileID: 1533090998}
+  _loader: {fileID: 899376140}
+  _lessonDropdown: {fileID: 1451778237}
+  _firstPanel: {fileID: 1653861583}
+  _secondPanel: {fileID: 1533090998}
+  _panelChangeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.08161329
+      value: 1.0128306
+      inSlope: 8.025538
+      outSlope: 8.025538
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.28083912
+      value: 1.0512811
+      inSlope: 0.13612977
+      outSlope: 0.13612977
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0166588
+      value: -0.0014104843
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1269934950
 GameObject:
   m_ObjectHideFlags: 0

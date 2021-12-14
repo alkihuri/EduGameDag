@@ -1,8 +1,6 @@
 ﻿using GameCore.Questions;
 using Inputs.Characters.Scripts;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine;
+using UnityEngine; 
 using TMPro;
 
 namespace GameCore.QuestPrefabs
