@@ -6,8 +6,10 @@ public class SceneController : MonoBehaviour
 {
      public void LoadSceneMethod(string sceneName)
     {
-        if (SceneManager.GetActiveScene().name != sceneName)
+        var currentScene = SceneManager.GetActiveScene().name;
+        if ((currentScene != sceneName) || (currentScene == "DemoScene" ))
             SceneManager.LoadScene(sceneName);
+         
     }
     public void ExitGame()
     {

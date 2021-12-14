@@ -11,45 +11,55 @@ using TMPro;
 public class LoadUIController : MonoBehaviour
 {
     [SerializeField]
-    private QuestLoader loader;
+    private QuestLoader _loader;
 
     [SerializeField]
-    private TMP_Dropdown lessonDropdown;
+    private TMP_Dropdown _lessonDropdown;
 
-    [SerializeField] GameObject firstPanel, secondPanel;
+    [SerializeField] GameObject _firstPanel, _secondPanel;
 
+    [SerializeField]
+    AnimationCurve _panelChangeCurve;
 
-    private int currentSelectedValue;
+    private int _currentSelectedValue;
 
     void Start()
     {
-        loader.OnJsonLoaded += () =>
+        _loader.OnJsonLoaded += () =>
         {
-            for (int i = 0; i < loader.TourQuests.tourQuests.Length; i++)
+            for (int i = 0; i < _loader.TourQuests.tourQuests.Length; i++)
             {
-                lessonDropdown.options[i].text = loader.TourQuests.tourQuests[i].tourName;
+                _lessonDropdown.options[i].text = _loader.TourQuests.tourQuests[i].tourName;
             }
-            lessonDropdown.onValueChanged.AddListener(
+            _lessonDropdown.onValueChanged.AddListener(
                 delegate
                 {
-                    DebugOnDropDown(lessonDropdown.value);
+                    DebugOnDropDown(_lessonDropdown.value);
                 });
         };
     }
 
     public void Sumbit() // я этот метод чисто через чтарый файл нашел ошалеть...
     {
-        loader.QuestionGenerator.CurrentQuestPack = currentSelectedValue;
-        //GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, 1f);
-
-        firstPanel.SetActive(false);
-        secondPanel.SetActive(true);
-
+        _loader.QuestionGenerator.CurrentQuestPack = _currentSelectedValue;
+        //GetComponent<RectTransform>().DOAnchorPosX(-Screen.width, 1f); 
+        StartCoroutine(PanelSwitcher());
         GameStateController.instance.StartGame();
+    }
+
+    IEnumerator PanelSwitcher()
+    {
+        for (float t = 0; t < 1;t+=Time.deltaTime/1.5f)
+        {
+            _firstPanel.transform.localScale = Vector3.one * _panelChangeCurve.Evaluate(t); 
+            yield return new WaitForEndOfFrame();
+        }
+        _firstPanel.SetActive(false);
+        _secondPanel.SetActive(true);
     }
 
     void DebugOnDropDown(int changeValue)
     {
-        currentSelectedValue = changeValue;
+        _currentSelectedValue = changeValue;
     }
 }

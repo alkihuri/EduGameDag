@@ -1,16 +1,14 @@
 ﻿using GameCore.Questions;
 using Inputs.Characters.Scripts;
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine;
+using UnityEngine; 
 using TMPro;
 
 namespace GameCore.QuestPrefabs
 {
     public class AnswerObjectController : MonoBehaviour
     {
-        private const float _slowSpeed = 0.2f;
-        private const float _fastSpeed = 5f;
+        private const float _slowSpeed = 0.4f;
+        private const float _fastSpeed = 10f;
         private const int _distanceToSwitchSpeedMode = 10;
         [SerializeField]
         Material _rightMaterial, _wrongMaterial; 
@@ -65,7 +63,7 @@ namespace GameCore.QuestPrefabs
             SetColor(_wrongMaterial);
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             var distance = Vector3.Distance(transform.position, new Vector3(transform.position.x, transform.position.y, player.position.z));
             _speed = distance < _distanceToSwitchSpeedMode ? _slowSpeed : _fastSpeed; // гьай гьай баляд рефакторинг 
