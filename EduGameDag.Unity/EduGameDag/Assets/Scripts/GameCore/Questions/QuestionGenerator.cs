@@ -214,23 +214,31 @@ namespace GameCore.Questions
                 newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
             }
 
-            var rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
+            GameObject rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
             objects[3] = rObj;
-            rObj.GetComponent<AnswerObjectController>()
-                .SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
+            rObj.GetComponent<AnswerObjectController>().SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
             ShuffleAnswers(ref objects);
             currentQuest++;
         }
 
         private static void ShuffleAnswers(ref GameObject[] array)
         {
-            var n = array.Length;
-            while (n > 1)
+            try
+            { 
+                int lastShit = array.Length - 1;
+                int randomIndex = Random.Range(0, 3); 
+                if(randomIndex == PlayerPrefs.GetInt("LastRightAns", randomIndex))
+                {
+                     randomIndex = randomIndex >= 2 ? --randomIndex : ++randomIndex;
+                } 
+                (array[lastShit].transform.position, array[randomIndex].transform.position)
+                    =
+                (array[randomIndex].transform.position, array[lastShit].transform.position);
+                PlayerPrefs.SetInt("LastRightAns", randomIndex); 
+            }
+            catch
             {
-                n -= 1;
-                var k = Random.Range(0, n);
-                (array[n].transform.position, array[k].transform.position) = (array[k].transform.position,
-                    array[n].transform.position);
+                Debug.LogWarning("Сокрытые. Буквы с краю короче");
             }
         }
     }
