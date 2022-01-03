@@ -22,27 +22,27 @@
         },
         {
           "question": "Найди букву М!",
-          "wrong_answers": [ "В", "Ы", "В" ],
+          "wrong_answers": [ "А", "Ы", "В" ],
           "right_answer": "М"
         },
         {
           "question": "Найди букву В!",
-          "wrong_answers": [ "В", "Ы", "О" ],
+          "wrong_answers": [ "А", "Ы", "О" ],
           "right_answer": "В"
         },
         {
           "question": "Найди букву Н!",
-          "wrong_answers": [ "В", "Ы", "В" ],
+          "wrong_answers": [ "П", "Ы", "М" ],
           "right_answer": "Н"
         },
         {
           "question": "Найди букву П!",
-          "wrong_answers": [ "В", "Ы", "В" ],
+          "wrong_answers": [ "П", "Ы", "М" ],
           "right_answer": "П"
         },
         {
           "question": "Найди букву К!",
-          "wrong_answers": [ "В", "Ы", "В" ],
+          "wrong_answers": [ "Р", "Ы", "Р" ],
           "right_answer": "К"
         }
       ]
