@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using GameCore.Questions;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace GameCore
 
         public event Action GameStarted;
         [SerializeField] QuestionGenerator _questionGenerator;
+        [SerializeField] int _difference;
 
         private void Awake()
         {
@@ -36,28 +38,13 @@ namespace GameCore
 
         private void CountScores()
         {
-            Debug.Log("Counted");
+            StartCoroutine(DelayWinScene());
+        }
 
-            var difference = _questionGenerator.listOfQuestionToSpawm.Count;//QuestionGenerator.Instance.QuestionCount - ScoreController.instance.Score;
-            if (difference == 0)
-            {
-                Debug.Log("win ");
-                SceneLoader.SceneLoader.instance.SetWinScene();
-                //TODO: EZ WIN 
-            }
-            else if (difference < 5 && difference > 0)
-            {
-                Debug.Log("win not easy");
-                SceneLoader.SceneLoader.instance.SetWinScene();
-                //TODO: not ez win
-            }
-            else if (difference > 5)
-            {
-                Debug.Log("lose");
-                SceneLoader.SceneLoader.instance.SetLoseScene();
-                //TODO: LOSE
-            }
-             
+        IEnumerator DelayWinScene()
+        { 
+            yield return new WaitForSeconds(1);
+            SceneLoader.SceneLoader.instance.SetWinScene();
         }
     }
 }

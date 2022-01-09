@@ -46,19 +46,19 @@ namespace AroundEnvironmentBehaivour
 
         public void RecreateEnvironment(Transform packTransform)
         {
-            Debug.Log("recreated");
+          //  Debug.Log("recreated");
             if (flag_counter == false)
             {
                 packTransform.localPosition = new Vector3(packTransform.localPosition.x, packTransform.localPosition.y, counter);
                 flag_counter = true;
-                Debug.Log("recreated by false");
+              //  Debug.Log("recreated by false");
             }
             else
             {
                 flag_counter = false;
                 packTransform.localPosition = new Vector3(packTransform.localPosition.x, packTransform.localPosition.y, counter);
                 counter += 21f;
-                Debug.Log("recreated by true");
+              //  Debug.Log("recreated by true");
             }
         }
     }

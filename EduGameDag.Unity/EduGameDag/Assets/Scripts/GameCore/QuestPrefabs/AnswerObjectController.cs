@@ -7,8 +7,8 @@ namespace GameCore.QuestPrefabs
 {
     public class AnswerObjectController : MonoBehaviour
     {
-        private const float _slowSpeed = 0.4f;
-        private const float _fastSpeed = 10f;
+        private const float _slowSpeed = 3.3f;
+        private const float _fastSpeed = 6.3f;
         private const int _distanceToSwitchSpeedMode = 10;
         [SerializeField]
         Material _rightMaterial, _wrongMaterial; 
@@ -16,6 +16,7 @@ namespace GameCore.QuestPrefabs
         [SerializeField] GameObject _baloon;
         private float _speed;
         private string _label;
+        const string OXI_TIP_CHARACTER = "_";
         //тупо собаки придумали какуюто дичь с текстмешпрогуй, а есть просто текстмешпро и хрен разбери сигаман
         [SerializeField] TextMeshProUGUI _textLabel; 
         // ана бозарган азиз ящлаган
@@ -33,6 +34,8 @@ namespace GameCore.QuestPrefabs
             set => _speed = value;
         }
 
+      
+
         [SerializeField]
         bool isRightAnswer;
 
@@ -48,10 +51,16 @@ namespace GameCore.QuestPrefabs
 
         public void SetRight(string label)
         {
+
+            if (!label.Contains(OXI_TIP_CHARACTER))
+                SetColor(_rightMaterial);
+            else
+                SetColor(_wrongMaterial);
+
             _label = label;
+            label = label.Replace(OXI_TIP_CHARACTER, ""); /// это надо будет выпилить. даже не вникай
             _textLabel.text = label;
             isRightAnswer = true;
-            SetColor(_rightMaterial);
             PlayerPrefs.SetString("CURRENT_AUDIO_KEY", label);
         }
 
@@ -83,13 +92,12 @@ namespace GameCore.QuestPrefabs
             if (!other.gameObject.GetComponent<SaidController>()) 
                 return;
             if (isRightAnswer)
-            {
-             
+            { 
                 RemoveKebabInvoker(_label);
                 ScoreController.instance.Score++;
             }
-            else
-                ScoreController.instance.Score--;
+           // else
+                //ScoreController.instance.Score--;
             QuestionGenerator.Instance.GenerateNewQuestLevel();
             RealeseBaloon();
             Destroy(gameObject);

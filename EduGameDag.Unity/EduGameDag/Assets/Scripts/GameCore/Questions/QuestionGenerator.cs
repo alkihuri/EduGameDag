@@ -51,6 +51,7 @@ namespace GameCore.Questions
         private int currentQuest = -1;
         private int questCountInPack;
         private int currentQuestPack = -1;
+        [SerializeField] private int _num;
 
         public int CurrentQuestPack
         {
@@ -92,6 +93,10 @@ namespace GameCore.Questions
 
         private void ClearObjects()
         {
+
+            if (listOfRightAnswers.Count < 1)
+                GameStateController.instance.GameOver();
+
             if (objects != null && objects.Length > 0)
             {
                 foreach (var obj in objects)
@@ -160,10 +165,7 @@ namespace GameCore.Questions
             { 
                 GenerateCubes();
             }
-            else
-            {
-                GameStateController.instance.GameOver();
-            }
+           
             // else
             // {
             //     Debug.Log("QuestionGenerator NEW SUBJECT LOADED");
@@ -173,6 +175,14 @@ namespace GameCore.Questions
 
         bool CanGenerateDummyFunction(string key)
         {
+
+            if (_num == 2 && key.Contains("_"))
+                return false;
+
+            _num = listOfRightAnswers.Where(word => word.Contains(key.Replace("_", "")) == true).Count(); // выпилить нахрен
+
+           
+
             if (listOfRightAnswers.Contains(key))
                 return true;
             else
@@ -182,12 +192,13 @@ namespace GameCore.Questions
 
         private void GenerateCubes() // кихури на исполнениях если покайу
         { 
+            
             try
-            {
+            { 
                 var checkWord = questLoader.QuestionPack.quests[currentQuest].right_answer;
                 if (!CanGenerateDummyFunction(checkWord))
                 {
-                    Debug.Log(checkWord + " уже изучен");
+                   // Debug.Log(checkWord + " уже изучен");
                     currentQuest++;
                     GenerateCubes();
                 }
@@ -198,7 +209,7 @@ namespace GameCore.Questions
             }
             catch
             {
-                currentQuest = 0;
+                currentQuest = 0;  
                 GenerateCubes();
             }
         }
