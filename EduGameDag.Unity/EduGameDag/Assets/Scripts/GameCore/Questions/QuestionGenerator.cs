@@ -17,6 +17,9 @@ namespace GameCore.Questions
         [SerializeField]
         private TextMeshProUGUI _text;
 
+        public float slowSpeed;
+        public float fastSpeed;
+
         [SerializeField]
         public  List<Transform> listOfQuestionToSpawm;
 
@@ -223,9 +226,11 @@ namespace GameCore.Questions
                 var answerText = questLoader.QuestionPack.quests[currentQuest].wrong_answers[i].ToString();
                 objects[i] = newOne;
                 newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
+                newOne.GetComponent<AnswerObjectController>().SetSpeed(slowSpeed,fastSpeed);
             }
 
             GameObject rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
+            rObj.GetComponent<AnswerObjectController>().SetSpeed(slowSpeed,fastSpeed);
             objects[3] = rObj;
             rObj.GetComponent<AnswerObjectController>().SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
             ShuffleAnswers(ref objects);

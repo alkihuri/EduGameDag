@@ -7,8 +7,8 @@ namespace GameCore.QuestPrefabs
 {
     public class AnswerObjectController : MonoBehaviour
     {
-        private const float _slowSpeed = 3.3f;
-        private const float _fastSpeed = 6.3f;
+        public float _slowSpeed = 3.3f;
+        public float _fastSpeed = 6.3f;
         private const int _distanceToSwitchSpeedMode = 10;
         [SerializeField]
         Material _rightMaterial, _wrongMaterial; 
@@ -34,7 +34,11 @@ namespace GameCore.QuestPrefabs
             set => _speed = value;
         }
 
-      
+        public void SetSpeed(float slow, float fast)
+        {
+            _slowSpeed = slow;
+            _fastSpeed = fast;
+        }
 
         [SerializeField]
         bool isRightAnswer;
