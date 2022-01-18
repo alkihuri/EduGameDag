@@ -7,6 +7,8 @@ public class AudioBinder : MonoBehaviour
     [SerializeField] AudioSource _audioSource;
     [SerializeField] string _currentAudioPath;
 
+    [SerializeField] List<string> _audioQuee;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,17 +27,25 @@ public class AudioBinder : MonoBehaviour
         _currentAudioPath = PlayerPrefs.GetString("CURRENT_AUDIO_KEY").Replace("-", ""); ;
         try
         {
-            if (_audioSource.clip.name != _currentAudioPath)
+            if (_audioSource.clip.name != _currentAudioPath && !_audioSource.isPlaying)
             {
                 _audioSource.clip = AudioGetter(_currentAudioPath);
                 _audioSource.Play();
             }
+            else if (_currentAudioPath.Contains("Ans"))
+            {
+                _audioSource.Play();
+            }
+
         }
-        catch   
+        catch
         {
             Debug.Log("НЕТ СОКРЫТИЮ! ДАААА! ");
         }
+
     }
+
+     
 
     AudioClip AudioGetter(string currentAudio)
     {

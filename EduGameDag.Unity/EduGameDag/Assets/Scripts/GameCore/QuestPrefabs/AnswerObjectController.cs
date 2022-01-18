@@ -2,6 +2,7 @@
 using Inputs.Characters.Scripts;
 using UnityEngine; 
 using TMPro;
+using System.Collections;
 
 namespace GameCore.QuestPrefabs
 {
@@ -65,6 +66,12 @@ namespace GameCore.QuestPrefabs
             label = label.Replace(OXI_TIP_CHARACTER, ""); /// это надо будет выпилить. даже не вникай
             _textLabel.text = label;
             isRightAnswer = true;
+            StartCoroutine(DelayAudioSet(label)); // чисто очередь
+        }
+
+        IEnumerator DelayAudioSet(string label)
+        {
+            yield return new WaitForSeconds(0.1f);
             PlayerPrefs.SetString("CURRENT_AUDIO_KEY", label);
         }
 
@@ -95,17 +102,34 @@ namespace GameCore.QuestPrefabs
            
             if (!other.gameObject.GetComponent<SaidController>()) 
                 return;
+
             if (isRightAnswer)
-            { 
-                RemoveKebabInvoker(_label);
-                ScoreController.instance.Score++;
+            {
+                RightAsnwer();
             }
-           // else
-                //ScoreController.instance.Score--;
+            else
+            {
+                WrongAnswer();
+            }
+            //ScoreController.instance.Score--;
             QuestionGenerator.Instance.GenerateNewQuestLevel();
             RealeseBaloon();
             Destroy(gameObject);
+
         }
+
+        private void WrongAnswer()
+        { 
+            PlayerPrefs.SetString("CURRENT_AUDIO_KEY", "WrongAns");
+        }
+
+        private void RightAsnwer()
+        {
+            PlayerPrefs.SetString("CURRENT_AUDIO_KEY", "RightAns");
+            RemoveKebabInvoker(_label);
+            ScoreController.instance.Score++;
+        }
+
         // hardcode
         [SerializeField] QuestionGenerator _questionGenerator;
         public void RemoveKebabInvoker(string key)
