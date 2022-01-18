@@ -20,8 +20,10 @@ namespace Inputs.Characters.Scripts
 
         private void Update()
         {
+            #if !UNITY_EDITOR
             if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
                 WorkWithTouches();
+            #endif
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 _saidController.OnRightMove();
@@ -32,7 +34,8 @@ namespace Inputs.Characters.Scripts
                 _saidController.OnLeftMove();
             }
         }
-
+#if !UNITY_EDITOR
+        
         void WorkWithTouches()
         {
             Touch touch = Input.GetTouch(0);
@@ -67,5 +70,7 @@ namespace Inputs.Characters.Scripts
                     throw new ArgumentOutOfRangeException();
             }
         }
+#endif
+
     }
 }

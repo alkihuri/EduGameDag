@@ -121,6 +121,7 @@ namespace GameCore.QuestPrefabs
         private void WrongAnswer()
         { 
             PlayerPrefs.SetString("CURRENT_AUDIO_KEY", "WrongAns");
+            ScoreController.instance.Score += 0;
             Handheld.Vibrate();
         }
 
