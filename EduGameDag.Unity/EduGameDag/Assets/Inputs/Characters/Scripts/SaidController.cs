@@ -55,13 +55,10 @@ namespace Inputs.Characters.Scripts
         private void OnGround()
         {
             particle.SetActive(true);
-            IsJump = false;
         }
 
         void OnMove(int direction)
         {
-            if(IsJump)
-                return;
             int newRaod = currentRoad + direction;
             if (newRaod < 4 && newRaod > -1)
             {

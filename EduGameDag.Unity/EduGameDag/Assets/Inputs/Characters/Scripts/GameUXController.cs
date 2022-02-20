@@ -60,14 +60,6 @@ namespace Inputs.Characters.Scripts
 
                     break;
                 }
-                case TouchPhase.Moved:
-                    break;
-                case TouchPhase.Stationary:
-                    break;
-                case TouchPhase.Canceled:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
             }
         }
 #endif
