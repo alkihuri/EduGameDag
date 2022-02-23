@@ -9,6 +9,7 @@ public class SaidMovement : MonoBehaviour
 {
     [SerializeField]
     List<Transform> roads;
+    Sequence currSequense;
     private void Start()
     {
         GetComponent<SaidController>().OnMoveAction += Move;

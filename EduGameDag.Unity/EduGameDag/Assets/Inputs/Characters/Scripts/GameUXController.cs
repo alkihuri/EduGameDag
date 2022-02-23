@@ -18,7 +18,7 @@ namespace Inputs.Characters.Scripts
             _saidController = GetComponent<SaidController>();
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             #if !UNITY_EDITOR
             if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)

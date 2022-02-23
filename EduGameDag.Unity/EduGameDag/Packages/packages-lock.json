@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.soprachevak.canvas-scaler-ps": {
+      "version": "https://github.com/SoprachevAK/CanvasScalerPS.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.ugui": "1.0.0"
+      },
+      "hash": "3322b787f80723de160aa815817807c91673892b"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
@@ -14,7 +23,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "1.15.1",
+      "version": "1.15.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -47,7 +56,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.11",
+      "version": "2.0.12",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -95,7 +104,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "10.7.0",
+      "version": "10.8.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -106,13 +115,13 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.universal": {
-      "version": "10.7.0",
+      "version": "10.8.1",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.1.0",
-        "com.unity.render-pipelines.core": "10.7.0",
-        "com.unity.shadergraph": "10.7.0"
+        "com.unity.render-pipelines.core": "10.8.1",
+        "com.unity.shadergraph": "10.8.1"
       },
       "url": "https://packages.unity.com"
     },
@@ -140,11 +149,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "10.7.0",
+      "version": "10.8.1",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.render-pipelines.core": "10.7.0",
+        "com.unity.render-pipelines.core": "10.8.1",
         "com.unity.searcher": "4.3.2"
       },
       "url": "https://packages.unity.com"
