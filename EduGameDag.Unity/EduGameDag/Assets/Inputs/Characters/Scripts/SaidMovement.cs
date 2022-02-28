@@ -17,6 +17,7 @@ public class SaidMovement : MonoBehaviour
 
     private void Move(int road)
     {
-        transform.DOMoveX(roads[road].position.x, 0.25f);
+        // transform.DOMoveX(roads[road].position.x, 0.25f);
+        transform.position = new Vector3(roads[road].position.x, transform.position.y,transform.position.z);
     }
 }
