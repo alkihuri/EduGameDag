@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using GameCore.Questions;
+using GameCore.QuestPrefabs;
 using UnityEngine;
 
 public class EffectController : MonoBehaviour
@@ -8,7 +10,7 @@ public class EffectController : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameObject  ps = Instantiate(_particleSystem,transform.position,Quaternion.identity);
-        Destroy(ps, 3);
+        QuestionGenerator.Instance.ObjectCleanup(Instantiate(Instantiate(_particleSystem, transform.position,
+            Quaternion.identity)));
     }
 }

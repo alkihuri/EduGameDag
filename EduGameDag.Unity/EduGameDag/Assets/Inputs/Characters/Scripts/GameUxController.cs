@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Inputs.Characters.Scripts
 {
-    public class GameUXController : MonoBehaviour
+    public class GameUxController : MonoBehaviour
     {
         [SerializeField]
         SaidController _saidController;
@@ -18,7 +18,7 @@ namespace Inputs.Characters.Scripts
             _saidController = GetComponent<SaidController>();
         }
 
-        private void LateUpdate()
+        private void Update()
         {
             #if !UNITY_EDITOR
             if (Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)

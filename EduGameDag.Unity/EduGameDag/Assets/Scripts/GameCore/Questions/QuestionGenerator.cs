@@ -14,25 +14,24 @@ namespace GameCore.Questions
     {
         public static QuestionGenerator Instance;
 
-        [SerializeField]
-        private TextMeshProUGUI _text;
+        [SerializeField] private TextMeshProUGUI _text;
 
         public float slowSpeed;
         public float fastSpeed;
 
-        [SerializeField]
-        public  List<Transform> listOfQuestionToSpawm;
+        [SerializeField] public List<Transform> listOfQuestionToSpawm;
 
-        [SerializeField]
-        private GameObject cube;
+        [SerializeField] private GameObject cube;
 
         private float gameSpeed;
 
-        Quest[] _tempArrayOfQuests; 
+        Quest[] _tempArrayOfQuests;
 
         public QuestLoader questLoader;
+
         [SerializeField]
-        List<string> listOfRightAnswers;  // here we have to store короче все бкувы\ответы\слоги\слова которые нужно отгадать, с каждым успешным ответом будем миносовать
+        List<string>
+            listOfRightAnswers; // here we have to store короче все бкувы\ответы\слоги\слова которые нужно отгадать, с каждым успешным ответом будем миносовать
 
         public float GameSpeed
         {
@@ -96,7 +95,6 @@ namespace GameCore.Questions
 
         private void ClearObjects()
         {
-
             if (listOfRightAnswers.Count < 1)
                 GameStateController.instance.GameOver();
 
@@ -104,17 +102,26 @@ namespace GameCore.Questions
             {
                 foreach (var obj in objects)
                 {
-                    Destroy(obj, 1);
+                    if (obj != null)
+                    {
+                        Destroy(obj.GetComponent<BoxCollider>());
+                        Destroy(obj, 1);
+                    }
                 }
             }
         }
 
+        public void ObjectCleanup(GameObject ps)
+        {
+            Destroy(ps, 3f);
+        }
+
         private void Start()
         {
-            OnLoadNewSubject += GenerateNewQuestLevel; 
+            OnLoadNewSubject += GenerateNewQuestLevel;
             GameStateController.instance.GameStarted += CalculateQuestions;
             OnQuestCounted += LoadNewSubject;
-            _tempArrayOfQuests = questLoader.QuestionPack.quests;
+            OnQuestCounted += () => _tempArrayOfQuests = questLoader.QuestionPack.quests;
             // questLoader.OnJsonLoaded += CalculateQuestions;
         }
 
@@ -126,7 +133,8 @@ namespace GameCore.Questions
                 listOfRightAnswers.Add(line.right_answer);
             }
         }
-        public  void RemoveKebab(string key) // да я просто удаляю из листа
+
+        public void RemoveKebab(string key) // да я просто удаляю из листа
         {
             listOfRightAnswers.Remove(key);
         }
@@ -135,7 +143,7 @@ namespace GameCore.Questions
         private void LoadNewSubject()
         {
             currentQuest = 0;
-            InitializeQuest(); 
+            InitializeQuest();
             RightAnswersListInnit();
             OnLoadNewSubject?.Invoke();
         }
@@ -164,11 +172,11 @@ namespace GameCore.Questions
         public void GenerateNewQuestLevel()
         {
             ClearObjects();
-            if (listOfRightAnswers.Count>0)
-            { 
+            if (listOfRightAnswers.Count > 0)
+            {
                 GenerateCubes();
             }
-           
+
             // else
             // {
             //     Debug.Log("QuestionGenerator NEW SUBJECT LOADED");
@@ -178,13 +186,12 @@ namespace GameCore.Questions
 
         bool CanGenerateDummyFunction(string key)
         {
-
             if (_num == 2 && key.Contains("_"))
                 return false;
 
-            _num = listOfRightAnswers.Where(word => word.Contains(key.Replace("_", "")) == true).Count(); // выпилить нахрен
+            _num = listOfRightAnswers.Where(word => word.Contains(key.Replace("_", "")) == true)
+                .Count(); // выпилить нахрен
 
-           
 
             if (listOfRightAnswers.Contains(key))
                 return true;
@@ -194,14 +201,13 @@ namespace GameCore.Questions
 
 
         private void GenerateCubes() // кихури на исполнениях если покайу
-        { 
-            
+        {
             try
-            { 
+            {
                 var checkWord = questLoader.QuestionPack.quests[currentQuest].right_answer;
                 if (!CanGenerateDummyFunction(checkWord))
                 {
-                   // Debug.Log(checkWord + " уже изучен");
+                    // Debug.Log(checkWord + " уже изучен");
                     currentQuest++;
                     GenerateCubes();
                 }
@@ -212,7 +218,7 @@ namespace GameCore.Questions
             }
             catch
             {
-                currentQuest = 0;  
+                currentQuest = 0;
                 GenerateCubes();
             }
         }
@@ -226,13 +232,14 @@ namespace GameCore.Questions
                 var answerText = questLoader.QuestionPack.quests[currentQuest].wrong_answers[i].ToString();
                 objects[i] = newOne;
                 newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
-                newOne.GetComponent<AnswerObjectController>().SetSpeed(slowSpeed,fastSpeed);
+                newOne.GetComponent<AnswerObjectController>().SetSpeed(slowSpeed, fastSpeed);
             }
 
             GameObject rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
-            rObj.GetComponent<AnswerObjectController>().SetSpeed(slowSpeed,fastSpeed);
+            rObj.GetComponent<AnswerObjectController>().SetSpeed(slowSpeed, fastSpeed);
             objects[3] = rObj;
-            rObj.GetComponent<AnswerObjectController>().SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
+            rObj.GetComponent<AnswerObjectController>()
+                .SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
             ShuffleAnswers(ref objects);
             currentQuest++;
         }
@@ -240,17 +247,18 @@ namespace GameCore.Questions
         private static void ShuffleAnswers(ref GameObject[] array)
         {
             try
-            { 
+            {
                 int lastShit = array.Length - 1;
-                int randomIndex = Random.Range(0, 3); 
-                if(randomIndex == PlayerPrefs.GetInt("LastRightAns", randomIndex))
+                int randomIndex = Random.Range(0, 3);
+                if (randomIndex == PlayerPrefs.GetInt("LastRightAns", randomIndex))
                 {
-                     randomIndex = randomIndex >= 2 ? --randomIndex : ++randomIndex;
-                } 
+                    randomIndex = randomIndex >= 2 ? --randomIndex : ++randomIndex;
+                }
+
                 (array[lastShit].transform.position, array[randomIndex].transform.position)
                     =
-                (array[randomIndex].transform.position, array[lastShit].transform.position);
-                PlayerPrefs.SetInt("LastRightAns", randomIndex); 
+                    (array[randomIndex].transform.position, array[lastShit].transform.position);
+                PlayerPrefs.SetInt("LastRightAns", randomIndex);
             }
             catch
             {
