@@ -249,7 +249,7 @@ namespace GameCore.Questions
             try
             {
                 int lastShit = array.Length - 1;
-                int randomIndex = Random.Range(0, 3);
+                int randomIndex = Random.Range(0, 5);
                 if (randomIndex == PlayerPrefs.GetInt("LastRightAns", randomIndex))
                 {
                     randomIndex = randomIndex >= 2 ? --randomIndex : ++randomIndex;

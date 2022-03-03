@@ -8,29 +8,22 @@ namespace Entities.Ajdaha
 
         public bool isAttack, isRun, isIdle =  true, isJump;
         [SerializeField] Animator _animatorOfAjdaha; 
-        // Start is called before the first frame update
         void Start()
         {
             _animatorOfAjdaha = GetComponentInChildren<Animator>();
             LetAjdahaRun();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-      
-        }
-        public void JumpAjdaha()
+        private void JumpAjdaha()
         {
             _animatorOfAjdaha.SetTrigger("isJump");
             isJump = true;
-          //  GetComponent<Rigidbody>().AddForce(transform.up * 3, ForceMode.Impulse);
             LetAjdahaRun();
         }
-        public void LetAjdahaRun()
+
+        private void LetAjdahaRun()
         {
             isJump = false; 
-            //_animatorOfAjdaha.ResetTrigger("isJump");
             _animatorOfAjdaha.SetBool("isRun", true);
             _animatorOfAjdaha.SetBool("isIdle", false);
         }
