@@ -57,7 +57,6 @@ namespace Inputs.Characters.Scripts
                             _saidController.OnLeftMove();
                         }
                     }
-
                     break;
                 }
             }

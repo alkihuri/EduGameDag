@@ -97,7 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 7a51987549fe643e78e089952026308b,
+    type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -1053,7 +1054,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!154 &277285239
 TerrainCollider:
   m_ObjectHideFlags: 0
@@ -2658,7 +2659,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.75, y: 1}
+    m_SensorSize: {x: 0.47368422, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3096,7 +3097,7 @@ MonoBehaviour:
   cube: {fileID: 9043936541670776618, guid: 7c623257a36a5db438c63a2c247e634c, type: 3}
   questLoader: {fileID: 899376140}
   listOfRightAnswers: []
-  _num: 0
+  num: 0
 --- !u!114 &899376140
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9681,6 +9682,84 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!1 &1409252229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1409252232}
+  - component: {fileID: 1409252231}
+  - component: {fileID: 1409252230}
+  m_Layer: 0
+  m_Name: T2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 0
+--- !u!154 &1409252230
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409252229}
+  m_Material: {fileID: 0}
+  m_Enabled: 1
+  m_TerrainData: {fileID: 15600000, guid: 79c0c06e086d9439abed086e2c6b03a0, type: 2}
+  m_EnableTreeColliders: 1
+--- !u!218 &1409252231
+Terrain:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409252229}
+  m_Enabled: 1
+  serializedVersion: 6
+  m_TerrainData: {fileID: 15600000, guid: 79c0c06e086d9439abed086e2c6b03a0, type: 2}
+  m_TreeDistance: 5000
+  m_TreeBillboardDistance: 50
+  m_TreeCrossFadeLength: 5
+  m_TreeMaximumFullLODCount: 50
+  m_DetailObjectDistance: 80
+  m_DetailObjectDensity: 1
+  m_HeightmapPixelError: 5
+  m_SplatMapDistance: 1000
+  m_HeightmapMaximumLOD: 0
+  m_ShadowCastingMode: 2
+  m_DrawHeightmap: 1
+  m_DrawInstanced: 0
+  m_DrawTreesAndFoliage: 1
+  m_StaticShadowCaster: 0
+  m_ReflectionProbeUsage: 1
+  m_MaterialTemplate: {fileID: 2100000, guid: 594ea882c5a793440b60ff72d896021e, type: 2}
+  m_BakeLightProbesForTrees: 1
+  m_PreserveTreePrototypeLayers: 0
+  m_DeringLightProbesForTrees: 1
+  m_ScaleInLightmap: 0.0256
+  m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000, type: 0}
+  m_GroupingID: 0
+  m_RenderingLayerMask: 1
+  m_AllowAutoConnect: 1
+--- !u!4 &1409252232
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1409252229}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -476, y: -156, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1417685716
 GameObject:
   m_ObjectHideFlags: 0
@@ -11913,7 +11992,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 50.95
   m_fontSizeBase: 41
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -13034,6 +13113,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: FogEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 5314595676578907628, guid: fc2df933865bc8541979468702d3c176,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
       propertyPath: prewarm
@@ -13057,12 +13141,12 @@ PrefabInstance:
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
       propertyPath: InitialModule.startLifetime.scalar
-      value: 10.76
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
-      value: 0.49019608
+      value: 0.39607844
       objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
@@ -13082,7 +13166,7 @@ PrefabInstance:
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime1
-      value: 9252
+      value: 9638
       objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
@@ -13097,12 +13181,12 @@ PrefabInstance:
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime4
-      value: 44525
+      value: 44333
       objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.atime5
-      value: 51464
+      value: 51657
       objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
@@ -13112,7 +13196,7 @@ PrefabInstance:
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key1.a
-      value: 0.8
+      value: 0.5019608
       objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
@@ -13122,7 +13206,7 @@ PrefabInstance:
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key3.a
-      value: 0.67058825
+      value: 0.5019608
       objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
@@ -13132,7 +13216,7 @@ PrefabInstance:
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}
       propertyPath: ColorModule.gradient.maxGradient.key5.a
-      value: 1
+      value: 0.5019608
       objectReference: {fileID: 0}
     - target: {fileID: 5314595676578907630, guid: fc2df933865bc8541979468702d3c176,
         type: 3}

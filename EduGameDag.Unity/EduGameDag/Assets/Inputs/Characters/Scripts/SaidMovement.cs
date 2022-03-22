@@ -20,28 +20,25 @@ namespace Inputs.Characters.Scripts
             {
                 if (_tweener.IsPlaying())
                 {
-                    Debug.Log("kill");
+                    // Debug.Log("kill");
                     _tweener.Pause();
                     transform.position = new Vector3(_whereIsGoing, transform.position.y, transform.position.z);
                     _whereIsGoing = roads[road].position.x;
-                    transform.DOMoveX(_whereIsGoing, 0.25F);
+                    transform.DOMoveX(_whereIsGoing, 0.2f);
                 }   
                 else
                 {
-                    Debug.Log("START");
+                    // Debug.Log("START");
                     _whereIsGoing = roads[road].position.x;
-                    _tweener = transform.DOMoveX(_whereIsGoing, 0.25f);
+                    _tweener = transform.DOMoveX(_whereIsGoing, 0.2f);
                 }
             }
             else
             {
-                Debug.Log("START");
+                // Debug.Log("START");
                 _whereIsGoing = roads[road].position.x;
-                _tweener = transform.DOMoveX(_whereIsGoing, 0.25f);
+                _tweener = transform.DOMoveX(_whereIsGoing, 0.2f);
             }
-            // _whereIsGoing = roads[road].position.x;
-            // transform.DOMoveX(roads[road].position.x, 0.25f);
-            // transform.position = new Vector3(roads[road].position.x, transform.position.y,transform.position.z);
         }
     }
 }

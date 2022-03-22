@@ -66,8 +66,6 @@ namespace Entities.Ajdaha
         }
         void ChangeValueDistance()
         {
-            Debug.Log((QuestionGenerator.Instance.QuestionCount -ScoreController.instance.Score)
-                      + "[" + Time.time.ToString("0.0") + "] ") ;
             if(QuestionGenerator.Instance.QuestionCount == 0)
                 return;
             needDistance = (QuestionGenerator.Instance.QuestionCount - ScoreController.instance.Score) * 5;
@@ -76,11 +74,6 @@ namespace Entities.Ajdaha
             {
                 increaseCount = (100f / QuestionGenerator.Instance.QuestionCount / 100f);
             } 
-            else
-            {
-                Debug.Log("increase = 0");
-            }
-            // сори за это явление говнокода :(
             distanceValueChanged?.Invoke(increaseCount);
             previousDistance = needDistance;
             float putAjdahaNearTheRoad = 0.75f * UnityEngine.Random.Range(-1, 1);

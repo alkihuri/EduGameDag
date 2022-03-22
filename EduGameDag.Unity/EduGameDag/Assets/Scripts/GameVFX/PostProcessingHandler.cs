@@ -32,7 +32,6 @@ namespace GameVFX
 
         private void InstanceOnOnScoreValueChange(int i)
         {
-            Debug.Log("View");
             // vignette.intensity.value = 1f;
             vignette.color.value = i>0? Color.green : Color.red;
             DOTween.To(() => vignette.intensity.value,
