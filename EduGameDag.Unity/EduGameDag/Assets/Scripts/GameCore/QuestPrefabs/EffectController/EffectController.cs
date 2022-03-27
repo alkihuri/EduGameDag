@@ -8,7 +8,7 @@ public class EffectController : MonoBehaviour
 {
     [SerializeField] GameObject _particleSystem;
 
-    private void OnDestroy()
+    public void InstantiateParticle()
     {
         QuestionGenerator.Instance.ObjectCleanup(Instantiate(Instantiate(_particleSystem, transform.position,
             Quaternion.identity)));

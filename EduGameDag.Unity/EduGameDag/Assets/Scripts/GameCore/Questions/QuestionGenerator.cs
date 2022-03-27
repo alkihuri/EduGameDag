@@ -5,7 +5,8 @@ using System.Linq;
 using GameCore.QuestPrefabs;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // просто что за неочевидное название баляд тупые животные
+using TMPro;
+using UnityEngine.Serialization; // просто что за неочевидное название баляд тупые животные
 using Random = UnityEngine.Random;
 
 namespace GameCore.Questions
@@ -23,54 +24,43 @@ namespace GameCore.Questions
 
         [SerializeField] private GameObject cube;
 
-        private float gameSpeed;
+        private float _gameSpeed;
 
-        Quest[] _tempArrayOfQuests;
+        private Quest[] _tempArrayOfQuests;
 
         public QuestLoader questLoader;
 
-        [SerializeField]
-        List<string>
+        [SerializeField] private List<string>
             listOfRightAnswers; // here we have to store короче все бкувы\ответы\слоги\слова которые нужно отгадать, с каждым успешным ответом будем миносовать
 
         public float GameSpeed
         {
-            get { return gameSpeed; }
-            set => gameSpeed = value;
+            get => _gameSpeed;
+            set => _gameSpeed = value;
         }
 
-        private int questCount;
-
-        public int QuestionCount
-        {
-            get { return questCount; }
-        }
+        public int QuestionCount { get; private set; }
 
         public event Action OnQuestCounted;
 
-        //private vars
-        private GameObject[] objects = new GameObject[4];
-        private int currentQuest = -1;
-        private int questCountInPack;
-        private int currentQuestPack = -1;
-        [SerializeField] private int _num;
+        private GameObject[] _objects = new GameObject[4];
+        private int _currentQuest = -1;
+        private int _questCountInPack;
+        private int _currentQuestPack = -1;
+        [FormerlySerializedAs("_num")] [SerializeField] private int num;
 
         public int CurrentQuestPack
         {
             get
             {
-                return currentQuestPack;
-                currentQuest = -1;
+                return _currentQuestPack;
+                _currentQuest = -1;
             }
-            set
-            {
-                currentQuestPack = value;
-                // StartCoroutine(ChangeQuestion());
-            }
+            set => _currentQuestPack = value;
         }
 
 
-        public event Action OnLoadNewSubject; //Событие, вызывающееся при появлении нового учебного предмета
+        public event Action OnLoadNewSubject;
 
         private void Awake()
         {
@@ -78,19 +68,15 @@ namespace GameCore.Questions
                 Instance = this;
         }
 
-        //after game started
         public void CalculateQuestions()
         {
-            questCount = 0;
-            Debug.Log(CurrentQuestPack);
+            QuestionCount = 0;
             foreach (var quest in questLoader.TourQuests.tourQuests[CurrentQuestPack].quests)
             {
-                questCount += 1;
+                QuestionCount += 1;
             }
 
-            Debug.Log("quest calculatedd" + "[" + Time.time.ToString("0.0") + "] ");
             OnQuestCounted?.Invoke();
-            //TODO: Remake THIS SHIT
         }
 
         private void ClearObjects()
@@ -98,16 +84,12 @@ namespace GameCore.Questions
             if (listOfRightAnswers.Count < 1)
                 GameStateController.instance.GameOver();
 
-            if (objects != null && objects.Length > 0)
+            if (_objects is not {Length: > 0}) return;
+            foreach (var obj in _objects)
             {
-                foreach (var obj in objects)
-                {
-                    if (obj != null)
-                    {
-                        Destroy(obj.GetComponent<BoxCollider>());
-                        Destroy(obj, 1);
-                    }
-                }
+                if (obj == null) continue;
+                Destroy(obj.GetComponent<BoxCollider>());
+                Destroy(obj, 1);
             }
         }
 
@@ -122,7 +104,6 @@ namespace GameCore.Questions
             GameStateController.instance.GameStarted += CalculateQuestions;
             OnQuestCounted += LoadNewSubject;
             OnQuestCounted += () => _tempArrayOfQuests = questLoader.QuestionPack.quests;
-            // questLoader.OnJsonLoaded += CalculateQuestions;
         }
 
         private void RightAnswersListInnit()
@@ -134,15 +115,14 @@ namespace GameCore.Questions
             }
         }
 
-        public void RemoveKebab(string key) // да я просто удаляю из листа
+        public void RemoveKebab(string key)
         {
             listOfRightAnswers.Remove(key);
         }
 
-        // after questCounted
         private void LoadNewSubject()
         {
-            currentQuest = 0;
+            _currentQuest = 0;
             InitializeQuest();
             RightAnswersListInnit();
             OnLoadNewSubject?.Invoke();
@@ -152,13 +132,12 @@ namespace GameCore.Questions
         {
             try
             {
-                questLoader.QuestionPack = questLoader.TourQuests.tourQuests[currentQuestPack];
-                questCountInPack = questLoader.QuestionPack.questCount;
+                questLoader.QuestionPack = questLoader.TourQuests.tourQuests[_currentQuestPack];
+                _questCountInPack = questLoader.QuestionPack.questCount;
             }
             catch (IndexOutOfRangeException e)
             {
                 Debug.Log("Here we can catch game ending");
-                // TODO: Game Ended   
             }
         }
 
@@ -168,7 +147,6 @@ namespace GameCore.Questions
             LoadNewSubject();
         }
 
-        //after quest counted
         public void GenerateNewQuestLevel()
         {
             ClearObjects();
@@ -176,39 +154,27 @@ namespace GameCore.Questions
             {
                 GenerateCubes();
             }
-
-            // else
-            // {
-            //     Debug.Log("QuestionGenerator NEW SUBJECT LOADED");
-            //     LoadNewSubject();
-            // }
         }
 
-        bool CanGenerateDummyFunction(string key)
+        private bool CanGenerateDummyFunction(string key)
         {
-            if (_num == 2 && key.Contains("_"))
+            if (num == 2 && key.Contains("_"))
                 return false;
 
-            _num = listOfRightAnswers.Where(word => word.Contains(key.Replace("_", "")) == true)
-                .Count(); // выпилить нахрен
-
-
-            if (listOfRightAnswers.Contains(key))
-                return true;
-            else
-                return false;
+            num = listOfRightAnswers.Count(word => word.Contains(key.Replace("_", "")) == true); // выпилить нахрен
+            
+            return listOfRightAnswers.Contains(key);
         }
 
 
-        private void GenerateCubes() // кихури на исполнениях если покайу
+        private void GenerateCubes()
         {
             try
             {
-                var checkWord = questLoader.QuestionPack.quests[currentQuest].right_answer;
+                var checkWord = questLoader.QuestionPack.quests[_currentQuest].right_answer;
                 if (!CanGenerateDummyFunction(checkWord))
                 {
-                    // Debug.Log(checkWord + " уже изучен");
-                    currentQuest++;
+                    _currentQuest++;
                     GenerateCubes();
                 }
                 else
@@ -218,30 +184,30 @@ namespace GameCore.Questions
             }
             catch
             {
-                currentQuest = 0;
+                _currentQuest = 0;
                 GenerateCubes();
             }
         }
 
         private void OldButGoldMethodTogenerate() /// как в солиде короче, нельзя меня старое говно
         {
-            _text.text = questLoader.QuestionPack.quests[currentQuest].question;
+            _text.text = questLoader.QuestionPack.quests[_currentQuest].question;
             for (var i = 0; i < 3; i++)
             {
                 var newOne = Instantiate(cube, listOfQuestionToSpawm[i].position, Quaternion.identity);
-                var answerText = questLoader.QuestionPack.quests[currentQuest].wrong_answers[i].ToString();
-                objects[i] = newOne;
+                var answerText = questLoader.QuestionPack.quests[_currentQuest].wrong_answers[i].ToString();
+                _objects[i] = newOne;
                 newOne.GetComponent<AnswerObjectController>().SetWrong(answerText);
                 newOne.GetComponent<AnswerObjectController>().SetSpeed(slowSpeed, fastSpeed);
             }
 
             GameObject rObj = Instantiate(cube, listOfQuestionToSpawm[3].position, Quaternion.identity);
             rObj.GetComponent<AnswerObjectController>().SetSpeed(slowSpeed, fastSpeed);
-            objects[3] = rObj;
+            _objects[3] = rObj;
             rObj.GetComponent<AnswerObjectController>()
-                .SetRight(questLoader.QuestionPack.quests[currentQuest].right_answer);
-            ShuffleAnswers(ref objects);
-            currentQuest++;
+                .SetRight(questLoader.QuestionPack.quests[_currentQuest].right_answer);
+            ShuffleAnswers(ref _objects);
+            _currentQuest++;
         }
 
         private static void ShuffleAnswers(ref GameObject[] array)

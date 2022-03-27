@@ -29,7 +29,6 @@ namespace GameCore
 
         private void SetDifficult(int index)
         {
-            Debug.Log(index);
             foreach (var btn in difficultButtons)
             {
                 btn.gameObject.GetComponent<Image>().color = Color.white;

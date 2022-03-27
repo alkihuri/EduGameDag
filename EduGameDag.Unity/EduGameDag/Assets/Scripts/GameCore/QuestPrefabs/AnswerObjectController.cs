@@ -114,8 +114,8 @@ namespace GameCore.QuestPrefabs
             //ScoreController.instance.Score--;
             QuestionGenerator.Instance.GenerateNewQuestLevel();
             RealeseBaloon();
+            GetComponent<EffectController>().InstantiateParticle();
             Destroy(gameObject);
-
         }
 
 

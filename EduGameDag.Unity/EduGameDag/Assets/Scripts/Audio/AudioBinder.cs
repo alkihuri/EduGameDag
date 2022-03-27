@@ -34,6 +34,7 @@ public class AudioBinder : MonoBehaviour
             }
             else if (_currentAudioPath.Contains("Ans"))
             {
+                Debug.Log("called answer?");
                 _audioSource.Play();
             }
 
