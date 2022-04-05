@@ -39,27 +39,24 @@ namespace Inputs.Characters.Scripts
         int currentRoad;
 
 
-        void Start()
+        private void Start()
         {
             StartCoroutine("StartGame");
             animatorEventHandler.onJumpEndEvent += OnGround;
         }
 
-        IEnumerator StartGame()
+        private IEnumerator StartGame()
         {
             yield return new WaitForSeconds(0.1f);
             isGameOn = true;
         }
 
 
-        private void OnGround()
-        {
-            particle.SetActive(true);
-        }
+        private void OnGround() => particle.SetActive(true);
 
-        void OnMove(int direction)
+        private void OnMove(int direction)
         {
-            int newRaod = currentRoad + direction;
+            var newRaod = currentRoad + direction;
             if (newRaod < 4 && newRaod > -1)
             {
                 currentRoad = newRaod;
@@ -70,15 +67,9 @@ namespace Inputs.Characters.Scripts
             }
         }
 
-        public void OnLeftMove()
-        {
-            OnMove(-1);
-        }
+        public void OnLeftMove() => OnMove(-1);
 
-        public void OnRightMove()
-        {
-            OnMove(1);
-        }
+        public void OnRightMove() => OnMove(1);
 
         private void OnTriggerEnter(Collider other)
         {

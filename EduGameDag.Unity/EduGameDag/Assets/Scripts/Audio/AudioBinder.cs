@@ -1,56 +1,58 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioBinder : MonoBehaviour
+namespace Audio
 {
-    [SerializeField] AudioSource _audioSource;
-    [SerializeField] string _currentAudioPath;
-
-    [SerializeField] List<string> _audioQuee;
-
-    // Start is called before the first frame update
-    void Start()
+    public class AudioBinder : MonoBehaviour
     {
-        PlayerPrefs.SetString("CURRENT_AUDIO_KEY","Intro");
-        _audioSource = GetComponent<AudioSource>();
-    }
+        [SerializeField] AudioSource _audioSource;
+        [SerializeField] string _currentAudioPath;
 
-    // Update is called once per frame
-    void Update()
-    {
-        SyncAudio(); 
-    }
+        [SerializeField] List<string> _audioQuee;
 
-    private void SyncAudio()
-    {
-        _currentAudioPath = PlayerPrefs.GetString("CURRENT_AUDIO_KEY").Replace("-", ""); ;
-        try
+        public static AudioBinder Instance;
+
+        private void Awake() => Instance = this;
+
+        private void Start()
         {
-            if (_audioSource.clip.name != _currentAudioPath && !_audioSource.isPlaying)
-            {
-                _audioSource.clip = AudioGetter(_currentAudioPath);
-                _audioSource.Play();
-            }
-            else if (_currentAudioPath.Contains("Ans"))
-            {
-                Debug.Log("called answer?");
-                _audioSource.Play();
-            }
-
+            // PlayerPrefs.SetString("CURRENT_AUDIO_KEY","Intro");
+            _audioSource = GetComponent<AudioSource>();
+            SyncAudio("Intro");
         }
-        catch
+        
+        public void SyncAudio(string s)
         {
-            Debug.Log("НЕТ СОКРЫТИЮ! ДАААА! ");
+            _audioQuee.Add(s);
+            //Смотрим - есть ли у нас еще какие-то аудио или нет. Если нет, то запускатеся тот, что есть, а если есть, то запускает корутину
+            //которая ждет окончания проигрывания аудио и потом запускает некст на очереди
+            //по хорошему тут лучше бы пробрасывать все через колбэки, но на это надо чуть больше времени
+            if (_audioQuee.Count > 1)
+                StartCoroutine(AudioWaiter(_audioQuee[0]));
+            else
+                SyncAudio();
         }
 
-    }
+        private void SyncAudio()
+        {
+            _currentAudioPath = _audioQuee[0].Replace("-", "");
+            _audioSource.clip = AudioGetter(_currentAudioPath);
+            _audioSource.Play();
+        }
 
-     
+        private IEnumerator AudioWaiter(string s)
+        {
+            yield return new WaitWhile(() => _audioSource.isPlaying);
+            _audioQuee.Remove(s);
+            SyncAudio();
+        }
 
-    AudioClip AudioGetter(string currentAudio)
-    {
-        var path = "Audio/Find/" + currentAudio;
-        return  Resources.Load<AudioClip>(path) as AudioClip;
+        private AudioClip AudioGetter(string currentAudio)
+        {
+            var path = "Audio/Find/" + currentAudio;
+            return Resources.Load<AudioClip>(path) as AudioClip;
+        }
     }
 }

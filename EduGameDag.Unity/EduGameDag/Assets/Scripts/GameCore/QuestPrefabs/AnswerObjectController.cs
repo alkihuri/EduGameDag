@@ -3,6 +3,7 @@ using Inputs.Characters.Scripts;
 using UnityEngine; 
 using TMPro;
 using System.Collections;
+using Audio;
 
 namespace GameCore.QuestPrefabs
 {
@@ -44,15 +45,9 @@ namespace GameCore.QuestPrefabs
         [SerializeField]
         bool isRightAnswer;
 
-        void Start()
-        { 
-            _speed = QuestionGenerator.Instance.GameSpeed;
-        }
+        private void Start() => _speed = QuestionGenerator.Instance.GameSpeed;
 
-        void SetColor(Material  materialToSet)
-        {
-            _objectToColor.GetComponent<Renderer>().material = materialToSet;
-        }
+        private void SetColor(Material  materialToSet) => _objectToColor.GetComponent<Renderer>().material = materialToSet;
 
         public void SetRight(string label)
         {
@@ -69,10 +64,11 @@ namespace GameCore.QuestPrefabs
             StartCoroutine(DelayAudioSet(label)); // чисто очередь
         }
 
-        IEnumerator DelayAudioSet(string label)
+        private IEnumerator DelayAudioSet(string label)
         {
             yield return new WaitForSeconds(0.1f);
-            PlayerPrefs.SetString("CURRENT_AUDIO_KEY", label);
+            // PlayerPrefs.SetString("CURRENT_AUDIO_KEY", label);
+            AudioBinder.Instance.SyncAudio(label);
         }
 
         public void SetWrong(string label)
@@ -121,14 +117,16 @@ namespace GameCore.QuestPrefabs
 
         private void WrongAnswer()
         { 
-            PlayerPrefs.SetString("CURRENT_AUDIO_KEY", "WrongAns");
+            // PlayerPrefs.SetString("CURRENT_AUDIO_KEY", "WrongAns");
+            AudioBinder.Instance.SyncAudio("WrongAns");
             ScoreController.instance.Score += 0;
             Handheld.Vibrate();
         }
 
         private void RightAsnwer()
         {
-            PlayerPrefs.SetString("CURRENT_AUDIO_KEY", "RightAns");
+            // PlayerPrefs.SetString("CURRENT_AUDIO_KEY", "RightAns");
+            AudioBinder.Instance.SyncAudio("RightAns");
             RemoveKebabInvoker(_label);
             ScoreController.instance.Score++;
         }

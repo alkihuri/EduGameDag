@@ -11,7 +11,7 @@ namespace GameVFX
         [SerializeField] private Volume postProcessingVolume;
         [SerializeField] private Vignette vignette;
 
-        void Start()
+        private void Start()
         {
             vignette = ScriptableObject.CreateInstance<Vignette>();
 
