@@ -16,10 +16,7 @@ public class AnimatorEventHandler : MonoBehaviour
         _saidController.OnJump += AnimateJump;
     }
 
-    public void OnJumpEnd()
-    {
-        onJumpEndEvent?.Invoke();
-    }
+    public void OnJumpEnd() => onJumpEndEvent?.Invoke();
 
     public void AnimateJump()
     {
