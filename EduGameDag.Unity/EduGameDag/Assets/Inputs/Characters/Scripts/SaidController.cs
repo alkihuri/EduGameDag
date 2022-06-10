@@ -11,16 +11,8 @@ namespace Inputs.Characters.Scripts
         public event Action OnJump;
         public event Action<int> OnMoveAction;
         public bool isGameOn;
-        private bool isJump;
 
-        public bool IsJump
-        {
-            get { return isJump; }
-            set
-            {
-                isJump = value;
-            }
-        }
+        public bool IsJump { get; set; }
 
         private void Awake()
         {
@@ -41,7 +33,7 @@ namespace Inputs.Characters.Scripts
 
         private void Start()
         {
-            StartCoroutine("StartGame");
+            StartCoroutine(StartGame());
             animatorEventHandler.onJumpEndEvent += OnGround;
         }
 
