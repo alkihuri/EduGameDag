@@ -1,26 +1,23 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Inputs.Characters.Scripts;
 using UnityEngine;
 
-public class AnimatorEventHandler : MonoBehaviour
+namespace Inputs.Characters.Scripts
 {
-    public event Action onJumpEndEvent;
-    public Animator PlayerAnimator;
-    private SaidController _saidController;
-
-    private void Start()
+    public class AnimatorEventHandler : MonoBehaviour
     {
-        _saidController = GetComponentInParent<SaidController>();
-        _saidController.OnJump += AnimateJump;
-    }
+        public Animator PlayerAnimator;
+        private SaidController _saidController;
 
-    public void OnJumpEnd() => onJumpEndEvent?.Invoke();
+        private void Start()
+        {
+            _saidController = GetComponentInParent<SaidController>();
+            _saidController.OnJump += AnimateJump;
+        }
 
-    public void AnimateJump()
-    {
-        PlayerAnimator.SetTrigger("Jump");
-        _saidController.IsJump = false;
+        public void AnimateJump()
+        {
+            PlayerAnimator.SetTrigger("Jump");
+            _saidController.IsJump = false;
+        }
     }
 }

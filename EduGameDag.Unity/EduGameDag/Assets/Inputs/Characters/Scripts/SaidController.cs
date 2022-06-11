@@ -7,7 +7,7 @@ namespace Inputs.Characters.Scripts
 {
     public class SaidController : MonoBehaviour
     {
-        public static SaidController instance;
+        public static SaidController Instance;
         public event Action OnJump;
         public event Action<int> OnMoveAction;
         public bool isGameOn;
@@ -16,26 +16,18 @@ namespace Inputs.Characters.Scripts
 
         private void Awake()
         {
-            if (instance == null)
-                instance = this;
+            if (Instance == null)
+                Instance = this;
         }
 
         [SerializeField]
         private GameObject particle;
 
     
-        public AnimatorEventHandler animatorEventHandler;
-        public SaidMovement _saidMovement;
-
         [SerializeField, Range(0, 4)]
         int currentRoad;
 
 
-        private void Start()
-        {
-            StartCoroutine(StartGame());
-            animatorEventHandler.onJumpEndEvent += OnGround;
-        }
 
         private IEnumerator StartGame()
         {

@@ -26,7 +26,7 @@ namespace GameCore.QuestPrefabs
         {
             get
             {
-                return SaidController.instance.transform;
+                return SaidController.Instance.transform;
             }
         }
 
