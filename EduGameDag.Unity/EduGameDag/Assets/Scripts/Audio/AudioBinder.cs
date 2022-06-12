@@ -16,13 +16,8 @@ namespace Audio
 
         private void Awake() => Instance = this;
 
-        private void Start()
-        {
-            // PlayerPrefs.SetString("CURRENT_AUDIO_KEY","Intro");
-            _audioSource = GetComponent<AudioSource>();
-            SyncAudio("Intro");
-        }
-        
+        private void Start() => _audioSource = GetComponent<AudioSource>();
+
         public void SyncAudio(string s)
         {
             _audioQuee.Add(s);
