@@ -13,14 +13,11 @@ namespace GameCore
         [SerializeField] private List<DifficultStructure> difficultLevels;
         [SerializeField] private Color selectedColor;
 
-        void Start()
-        {
-            SetDifficult(PlayerPrefs.GetInt("SelectedDifficult"));
-        }
+        private void Start() => SetDifficult(PlayerPrefs.GetInt("SelectedDifficult"));
 
         private void OnEnable()
         {
-            for (int i = 0; i < difficultButtons.Count; i++)
+            for (var i = 0; i < difficultButtons.Count; i++)
             {
                 var i1 = i;
                 difficultButtons[i].onClick.AddListener(() => SetDifficult(i1));
@@ -29,7 +26,7 @@ namespace GameCore
 
         private void SetDifficult(int index)
         {
-            foreach (var btn in difficultButtons)
+            foreach (Button btn in difficultButtons)
             {
                 btn.gameObject.GetComponent<Image>().color = Color.white;
             }
@@ -42,7 +39,7 @@ namespace GameCore
 
         private void OnDisable()
         {
-            for (int i = 0; i < difficultButtons.Count; i++)
+            for (var i = 0; i < difficultButtons.Count; i++)
             {
                 difficultButtons[i].onClick.RemoveAllListeners();
             }

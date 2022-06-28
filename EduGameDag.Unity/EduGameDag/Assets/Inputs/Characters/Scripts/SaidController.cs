@@ -8,8 +8,8 @@ namespace Inputs.Characters.Scripts
     public class SaidController : MonoBehaviour
     {
         public static SaidController Instance;
-        public event Action OnJump;
         public event Action<int> OnMoveAction;
+        public event Action<int> OnMoveChanged;
         public bool isGameOn;
 
         public bool IsJump { get; set; }
@@ -23,10 +23,9 @@ namespace Inputs.Characters.Scripts
         [SerializeField]
         private GameObject particle;
 
-    
-        [SerializeField, Range(0, 4)]
-        int currentRoad;
 
+        [SerializeField][Range(0, 4)]
+        private int currentRoad;
 
 
         private IEnumerator StartGame()
@@ -40,13 +39,13 @@ namespace Inputs.Characters.Scripts
 
         private void OnMove(int direction)
         {
+            OnMoveChanged?.Invoke(direction);
             var newRaod = currentRoad + direction;
             if (newRaod < 4 && newRaod > -1)
             {
                 currentRoad = newRaod;
                 IsJump = true;
                 particle.SetActive(false);
-                OnJump?.Invoke();
                 OnMoveAction?.Invoke(currentRoad);
             }
         }

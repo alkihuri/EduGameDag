@@ -22,17 +22,11 @@ namespace GameCore.QuestPrefabs
         //тупо собаки придумали какуюто дичь с текстмешпрогуй, а есть просто текстмешпро и хрен разбери сигаман
         [SerializeField] TextMeshProUGUI _textLabel; 
         // ана бозарган азиз ящлаган
-        private Transform player
-        {
-            get
-            {
-                return SaidController.Instance.transform;
-            }
-        }
+        private Transform player => SaidController.Instance.transform;
 
         public float Speed
         {
-            get { return _speed; }
+            get => _speed;
             set => _speed = value;
         }
 
@@ -43,7 +37,7 @@ namespace GameCore.QuestPrefabs
         }
 
         [SerializeField]
-        bool isRightAnswer;
+        private bool isRightAnswer;
 
         private void Start() => _speed = QuestionGenerator.Instance.GameSpeed;
 
@@ -67,7 +61,6 @@ namespace GameCore.QuestPrefabs
         private IEnumerator DelayAudioSet(string label)
         {
             yield return new WaitForSeconds(0.1f);
-            // PlayerPrefs.SetString("CURRENT_AUDIO_KEY", label);
             AudioBinder.Instance.SyncAudio(label);
         }
 
@@ -82,11 +75,11 @@ namespace GameCore.QuestPrefabs
         private void FixedUpdate()
         {
             var distance = Vector3.Distance(transform.position, new Vector3(transform.position.x, transform.position.y, player.position.z));
-            _speed = distance < _distanceToSwitchSpeedMode ? _slowSpeed : _fastSpeed; // гьай гьай баляд рефакторинг 
+            _speed = _fastSpeed; // гьай гьай баляд рефакторинг 
             transform.position -= new Vector3(0, 0, 0.1f) * _speed;
         }
 
-        public void RealeseBaloon()
+        public void ReleaseBaloon()
         {
             _speed = _fastSpeed;
             _baloon.transform.SetParent(null);
@@ -100,16 +93,12 @@ namespace GameCore.QuestPrefabs
                 return;
 
             if (isRightAnswer)
-            {
                 RightAsnwer();
-            }
             else
-            {
                 WrongAnswer();
-            }
             //ScoreController.instance.Score--;
             QuestionGenerator.Instance.GenerateNewQuestLevel();
-            RealeseBaloon();
+            ReleaseBaloon();
             GetComponent<EffectController>().InstantiateParticle();
             Destroy(gameObject);
         }

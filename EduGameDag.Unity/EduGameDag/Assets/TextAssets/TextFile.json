@@ -85,59 +85,6 @@
         "wrong_answers": [ "Б", "Ы", "Р" ],
         "right_answer": "_К"
       }
-       
-      ]
-    },
-    {
-      "questCount": 4,
-      "tourName": "Слоги",
-      "quests": [
-        {
-          "question": "Найди слог МА!",
-          "wrong_answers": [ "АВ", "ИМ", "КА" ],
-          "right_answer": "МА"
-        },
-        {
-          "question": "Найди слог МО!",
-          "wrong_answers": [ "АВ", "ИМ", "КА" ],
-          "right_answer": "МО"
-        },
-        {
-          "question": "Найди слог СА!",
-          "wrong_answers": [ "АВ", "ИМ", "КА" ],
-          "right_answer": "СА"
-        },
-        {
-          "question": "Найди слог СО!",
-          "wrong_answers": [ "АВ", "ИМ", "КА" ],
-          "right_answer": "СО"
-        }
-      ]
-    },
-    {
-      "questCount": 4,
-      "tourName": "Слова",
-      "quests": [
-        {
-          "question": "Найди слово Мама!",
-          "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
-          "right_answer": "МА-МА"
-        },
-        {
-          "question": "Найди слово Папа!",
-          "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
-          "right_answer": "ПА-ПА"
-        },
-        {
-          "question": "Найди слово Мост!",
-          "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
-          "right_answer": "МО-СТ"
-        },
-        {
-          "question": "Найди слово Куст!",
-          "wrong_answers": [ "АМ-АМ", "РА-РА", "ЖЕ-ЖЕ" ],
-          "right_answer": "КУ-СТ"
-        }
       ]
     }
   ]

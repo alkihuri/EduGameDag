@@ -1,22 +1,22 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using DG.Tweening;
 
 namespace Inputs.Characters.Scripts
 {
     public class AnimatorEventHandler : MonoBehaviour
     {
-        public Animator PlayerAnimator;
         private SaidController _saidController;
 
         private void Start()
         {
             _saidController = GetComponentInParent<SaidController>();
-            _saidController.OnJump += AnimateJump;
+            _saidController.OnMoveChanged += AnimateJump;
         }
 
-        public void AnimateJump()
+        private void AnimateJump(int obj)
         {
-            PlayerAnimator.SetTrigger("Jump");
+            if(obj == 1) transform.DORotate(Vector3.up * 50, 0.2f).OnComplete(() => transform.DORotate(Vector3.zero, 0.2f));
+            else transform.DORotate(Vector3.down * 50, 0.2f).OnComplete(() => transform.DORotate(Vector3.zero, 0.2f));
             _saidController.IsJump = false;
         }
     }

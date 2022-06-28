@@ -7,10 +7,12 @@ namespace Audio
 {
     public class AudioBinder : MonoBehaviour
     {
-        [SerializeField] AudioSource _audioSource;
-        [SerializeField] string _currentAudioPath;
+        [SerializeField]
+        private AudioSource _audioSource;
+        [SerializeField]
+        private string _currentAudioPath;
 
-        [SerializeField] List<string> _audioQuee;
+        private Queue<string> _audioQueue = new();
 
         public static AudioBinder Instance;
 
@@ -20,29 +22,40 @@ namespace Audio
 
         public void SyncAudio(string s)
         {
-            _audioQuee.Add(s);
+            _audioQueue.Enqueue(s);
+            Debug.Log("Added audioqueue " + s);
             //Смотрим - есть ли у нас еще какие-то аудио или нет. Если нет, то запускатеся тот, что есть, а если есть, то запускает корутину
             //которая ждет окончания проигрывания аудио и потом запускает некст на очереди
             //по хорошему тут лучше бы пробрасывать все через колбэки, но на это надо чуть больше времени
-            if (_audioQuee.Count > 1)
-                StartCoroutine(AudioWaiter(_audioQuee[0]));
-            else
-                SyncAudio();
+            // if (_audioQueue.Count > 1)
+            //     StartCoroutine(AudioWaiter(_audioQueue[0]));
+            // else
+            //     SyncAudio();
         }
 
-        private void SyncAudio()
+        private void Update()
         {
-            _currentAudioPath = _audioQuee[0].Replace("-", "");
-            _audioSource.clip = AudioGetter(_currentAudioPath);
-            _audioSource.Play();
+            if (!_audioSource.isPlaying  && _audioQueue.Count > 0) {
+                _audioSource.clip = AudioGetter(_audioQueue.Dequeue());
+                _audioSource.Play();
+            }
         }
+        
 
-        private IEnumerator AudioWaiter(string s)
-        {
-            yield return new WaitWhile(() => _audioSource.isPlaying);
-            _audioQuee.Remove(s);
-            SyncAudio();
-        }
+        // private void SyncAudio()
+        // {
+        //     _currentAudioPath = _audioQueue[0].Replace("-", "");
+        //     _audioSource.clip = AudioGetter(_currentAudioPath);
+        //     Debug.Log(_audioSource.clip.name);
+        //     _audioSource.Play();
+        // }
+        //
+        // private IEnumerator AudioWaiter(string s)
+        // {
+        //     yield return new WaitWhile(() => _audioSource.isPlaying);
+        //     _audioQueue.Remove(s);
+        //     SyncAudio();
+        // }
 
         private AudioClip AudioGetter(string currentAudio)
         {
