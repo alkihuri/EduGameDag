@@ -7,47 +7,47 @@
       "quests": [
         {
           "question": "Найди букву А!",
-          "wrong_answers": [ "Б", "К", "Ч" ],
+          "wrong_answers": [ "О", "С", "М" ],
           "right_answer": "А"
         },
         {
           "question": "Найди букву О!",
-          "wrong_answers": [ "А", "И", "Ж" ],
+          "wrong_answers": [ "А", "С", "М" ],
           "right_answer": "О"
         },
         {
           "question": "Найди букву С!",
-          "wrong_answers": [ "П", "В", "К" ],
+          "wrong_answers": [ "А", "О", "М" ],
           "right_answer": "С"
         },
         {
           "question": "Найди букву М!",
-          "wrong_answers": [ "А", "Ы", "В" ],
+          "wrong_answers": [ "А", "О", "С" ],
           "right_answer": "М"
         },
         {
           "question": "Найди букву В!",
-          "wrong_answers": [ "Ж", "Т", "О" ],
+          "wrong_answers": [ "М", "А", "С" ],
           "right_answer": "В"
         },
         {
           "question": "Найди букву Н!",
-          "wrong_answers": [ "П", "Р", "М" ],
+          "wrong_answers": [ "В", "А", "М" ],
           "right_answer": "Н"
         },
         {
           "question": "Найди букву П!",
-          "wrong_answers": [ "Н", "Ы", "М" ],
+          "wrong_answers": [ "В", "А", "М" ],
           "right_answer": "П"
         },
         {
           "question": "Найди букву К!",
-          "wrong_answers": [ "Б", "Ы", "Р" ],
+          "wrong_answers": [ "А", "Н", "В" ],
           "right_answer": "К"
         },
       { 
         "question": "Найди букву А!",
-        "wrong_answers": [ "Б", "К", "Ч" ],
+        "wrong_answers": [ "О", "С", "М" ],
         "right_answer": "_А"
       },
       {
@@ -57,32 +57,32 @@
       },
       {
         "question": "Найди букву С!",
-        "wrong_answers": [ "П", "В", "К" ],
+        "wrong_answers": [ "А", "О", "М" ],
         "right_answer": "_С"
       },
       {
         "question": "Найди букву М!",
-        "wrong_answers": [ "А", "Ы", "В" ],
+        "wrong_answers": [ "А", "О", "С" ],
         "right_answer": "_М"
       },
       {
         "question": "Найди букву В!",
-        "wrong_answers": [ "Ж", "Т", "О" ],
+        "wrong_answers": [ "А", "О", "С"],
         "right_answer": "_В"
       },
       {
         "question": "Найди букву Н!",
-        "wrong_answers": [ "П", "Р", "М" ],
+        "wrong_answers": ["М", "А", "С"],
         "right_answer": "_Н"
       },
       {
         "question": "Найди букву П!",
-        "wrong_answers": [ "Н", "Ы", "М" ],
+        "wrong_answers": [ "В", "А", "М" ],
         "right_answer": "_П"
       },
       {
         "question": "Найди букву К!",
-        "wrong_answers": [ "Б", "Ы", "Р" ],
+        "wrong_answers": [ "А", "Н", "В"  ],
         "right_answer": "_К"
       }
       ]
