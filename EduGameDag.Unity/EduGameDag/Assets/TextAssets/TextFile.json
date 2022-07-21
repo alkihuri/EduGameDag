@@ -52,7 +52,7 @@
       },
       {
         "question": "Найди букву О!",
-        "wrong_answers": [ "А", "И", "Ж" ],
+        "wrong_answers": [ "А", "И", "C" ],
         "right_answer": "_О"
       },
       {
@@ -67,12 +67,12 @@
       },
       {
         "question": "Найди букву В!",
-        "wrong_answers": [ "А", "О", "С"],
+        "wrong_answers": [ "А", "О", "М"],
         "right_answer": "_В"
       },
       {
         "question": "Найди букву Н!",
-        "wrong_answers": ["М", "А", "С"],
+        "wrong_answers": ["М", "А", "О"],
         "right_answer": "_Н"
       },
       {
