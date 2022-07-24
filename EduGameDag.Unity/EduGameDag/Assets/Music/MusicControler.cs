@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using DG;
 
 public class MusicControler : MonoBehaviour
 {
@@ -19,5 +21,14 @@ public class MusicControler : MonoBehaviour
         {
             _audio.Pause();
         }
+    }
+
+    public void FadeMusic()
+    {
+        _audio.volume = 0.02f;
+    }
+    public void RiseMusic()
+    {
+        _audio.volume = 1;
     }
 }
