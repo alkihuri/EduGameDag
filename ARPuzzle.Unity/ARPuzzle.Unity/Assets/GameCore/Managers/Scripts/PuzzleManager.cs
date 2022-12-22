@@ -2,41 +2,92 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
+
 public class PuzzleManager : MonoBehaviour
 {
     [SerializeField] private GameObject _part;
     [SerializeField, Range(1, 10)] private float _size;
-    [SerializeField] List<GameObject> _puzzleParts = new List<GameObject>();
+    [SerializeField] List<PartController> _puzzleParts = new List<PartController>();
+    [SerializeField] private float _ratio;
+
+    public float Size { get => _size; set => _size = value; }
+    public List<PartController> PuzzleParts { get => _puzzleParts; set => _puzzleParts = value; }
+    public float Ratio { get => _ratio; set => _ratio = value; }
+
+    private void Awake()
+    {
+        Cashing();
+        Settings();
+    }
+
+    private void Settings()
+    {
+
+        Ratio = 16 / 9;
+        InnitPuzzlePool();
+    }
+
+    private void Cashing()
+    {
+
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        for (float x = 0; x < _size; x++)
+        ShowRight();
+    }
+
+
+    private void InnitPuzzlePool()
+    {
+        for (float x = 0; x < Size; x++)
         {
-            for (float z = 0; z < _size; z++)
+            for (float z = 0; z < Size; z++)
             {
                 GameObject newPart = Instantiate(_part, transform);
-
-                var startPos = new Vector3((x - 2f) * _size * 2 - (_size / 2), 1, (z - 2) * _size * 2 - (_size / 2));
-                newPart.transform.DOMove(startPos, x + z);
-                ;
-                /*    = new Vector3
-                        (Random.Range(-_size * 2, _size * 2),
-                        0,
-                        Random.Range(-_size * 2, _size * 2));
-                */
-                newPart.GetComponentInChildren<Renderer>().material.SetFloat("_size", _size);
-                newPart.GetComponentInChildren<Renderer>().material.SetFloat("_x", x);
-                newPart.GetComponentInChildren<Renderer>().material.SetFloat("_y", z);
-
-                _puzzleParts.Add(newPart);
+                PartController partController = newPart.GetComponent<PartController>();
+                partController.ID = (int)((x + 1) * (z + 1));
+                partController.X = (int)((x) * 11);
+                partController.Y = (int)((z) * 11);
+                partController.Ratio = Ratio;
+                ShaderSettings(x, z, newPart);
+                PuzzleParts.Add(partController);
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ShaderSettings(float x, float z, GameObject newPart)
     {
+        var newPartRenderer = newPart.GetComponentInChildren<Renderer>();
+        newPartRenderer.material.SetFloat("_size", Size);
+        newPartRenderer.material.SetFloat("_ratio", Ratio);
+        newPartRenderer.material.SetFloat("_x", x);
+        newPartRenderer.material.SetFloat("_y", z);
+    }
 
+    public void ShowRight()
+    {
+        StartCoroutine(RightPOstionDelayed());
+    }
+    private IEnumerator RightPOstionDelayed()
+    {
+        foreach (PartController part in _puzzleParts)
+        {
+            yield return new WaitForSeconds(0.1f);
+            part.DoCorrectPostion(0.1f);
+        }
+
+        yield return new WaitForSeconds(2);
+        StartCoroutine(RandomPostionDelay());
+    }
+    private IEnumerator RandomPostionDelay()
+    {
+        foreach (PartController part in _puzzleParts)
+        {
+            yield return new WaitForSeconds(0.1f);
+            part.DoRandomPosition(Size*10,0.1f);
+        }
     }
 }
