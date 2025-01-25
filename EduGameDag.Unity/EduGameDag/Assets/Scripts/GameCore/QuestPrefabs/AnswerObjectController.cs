@@ -109,7 +109,7 @@ namespace GameCore.QuestPrefabs
             // PlayerPrefs.SetString("CURRENT_AUDIO_KEY", "WrongAns");
             AudioBinder.Instance.SyncAudio("WrongAns");
             ScoreController.instance.Score += 0;
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
         }
 
         private void RightAsnwer()
